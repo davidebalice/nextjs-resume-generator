@@ -1,24 +1,21 @@
 "use server";
 import db from "@/database/db";
 import Resume from "@/models/resume";
+import { currentUser } from "@/utils/auth";
 
-const checkOwnership = async (resumeId) => {
+const checkOwnership = async (resumeId, token) => {
   try {
-    // get current user
-    //const user = await currentUser();
-    const user = null;
-    const userEmail = user?.emailAddresses[0]?.emailAddress;
+    const user = await currentUser(token);
+    const userEmail = user?.email;
     if (!userEmail) {
       throw new Error("User not found");
     }
 
-    // find the resume by id
     const resume = await Resume.findById(resumeId);
     if (!resume) {
       throw new Error("Resume not found");
     }
 
-    // check if the resume belongs to the user
     if (resume.userEmail !== userEmail) {
       throw new Error("Unauthorized");
     }
@@ -29,12 +26,12 @@ const checkOwnership = async (resumeId) => {
   }
 };
 
-export const saveResumeToDb = async (data) => {
+export const saveResumeToDb = async (data, token) => {
   try {
     db();
-    //const user = await currentUser();
-    const user = null;
-    const userEmail = user?.emailAddresses[0]?.emailAddress;
+    const user = await currentUser(token);
+
+    const userEmail = user?.email;
 
     const { _id, ...rest } = data;
 
@@ -45,12 +42,12 @@ export const saveResumeToDb = async (data) => {
   }
 };
 
-export const getUserResumesFromDb = async () => {
+export const getUserResumesFromDb = async (token) => {
   try {
     db();
-    //const user = await currentUser();
-    const user = null;
-    const userEmail = user?.emailAddresses[0]?.emailAddress;
+    const user = await currentUser(token);
+
+    const userEmail = user?.email;
 
     const resumes = await Resume.find({ userEmail });
     return JSON.parse(JSON.stringify(resumes));
@@ -69,13 +66,12 @@ export const getResumeFromDb = async (_id) => {
   }
 };
 
-export const updateResumeFromDb = async (data) => {
+export const updateResumeFromDb = async (data, token) => {
   try {
     db();
     const { _id, ...rest } = data;
 
-    // check ownership
-    await checkOwnership(_id);
+    await checkOwnership(_id, token);
 
     const resume = await Resume.findByIdAndUpdate(
       _id,
@@ -89,13 +85,12 @@ export const updateResumeFromDb = async (data) => {
   }
 };
 
-export const updateExperienceToDb = async (data) => {
+export const updateExperienceToDb = async (data, token) => {
   try {
     db();
     const { _id, experience } = data;
 
-    // check ownership
-    await checkOwnership(_id);
+    await checkOwnership(_id, token);
 
     const resume = await Resume.findByIdAndUpdate(
       _id,
@@ -108,13 +103,12 @@ export const updateExperienceToDb = async (data) => {
   }
 };
 
-export const updateEducationToDb = async (data) => {
+export const updateEducationToDb = async (data, token) => {
   try {
     db();
     const { _id, education } = data;
 
-    // check ownership
-    await checkOwnership(_id);
+    await checkOwnership(_id, token);
 
     const resume = await Resume.findByIdAndUpdate(
       _id,
@@ -127,13 +121,12 @@ export const updateEducationToDb = async (data) => {
   }
 };
 
-export const updateSkillsToDb = async (data) => {
+export const updateSkillsToDb = async (data, token) => {
   try {
     db();
     const { _id, skills } = data;
 
-    // check ownership
-    await checkOwnership(_id);
+    await checkOwnership(_id, token);
 
     const resume = await Resume.findByIdAndUpdate(
       _id,
@@ -146,11 +139,10 @@ export const updateSkillsToDb = async (data) => {
   }
 };
 
-export const deleteResumeFromDb = async (_id) => {
+export const deleteResumeFromDb = async (_id, token) => {
   try {
     db();
-    // check ownership
-    await checkOwnership(_id);
+    await checkOwnership(_id, token);
 
     const resume = await Resume.findByIdAndDelete(_id);
     return JSON.parse(JSON.stringify(resume));

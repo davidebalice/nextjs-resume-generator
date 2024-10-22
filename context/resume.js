@@ -1,18 +1,18 @@
 "use client";
-import React from "react";
-import {
-  saveResumeToDb,
-  getUserResumesFromDb,
-  getResumeFromDb,
-  updateResumeFromDb,
-  updateExperienceToDb,
-  updateEducationToDb,
-  updateSkillsToDb,
-  deleteResumeFromDb,
-} from "@/actions/resume";
-import toast from "react-hot-toast";
-import { useRouter, useParams, usePathname } from "next/navigation";
 import { runAi } from "@/actions/ai";
+import {
+  deleteResumeFromDb,
+  getResumeFromDb,
+  getUserResumesFromDb,
+  saveResumeToDb,
+  updateEducationToDb,
+  updateExperienceToDb,
+  updateResumeFromDb,
+  updateSkillsToDb,
+} from "@/actions/resume";
+import { useParams, usePathname, useRouter } from "next/navigation";
+import React from "react";
+import toast from "react-hot-toast";
 
 const ResumeContext = React.createContext();
 
@@ -50,31 +50,25 @@ const initialState = {
 };
 
 export function ResumeProvider({ children }) {
-  // state
   const [resume, setResume] = React.useState(initialState);
   const [resumes, setResumes] = React.useState([]);
   const [step, setStep] = React.useState(1);
-  // experience
   const [experienceList, setExperienceList] = React.useState([experienceField]);
   const [experienceLoading, setExperienceLoading] = React.useState({});
-  // education
   const [educationList, setEducationList] = React.useState([educationField]);
-  // skills
   const [skillsList, setSkillsList] = React.useState([skillField]);
+  const [token, setToken] = React.useState(null);
 
-  // hooks
   const router = useRouter();
   const { _id } = useParams();
   const pathname = usePathname();
 
-  // React.useEffect(() => {
-  //   if (pathname?.includes("/resume/create")) {
-  //     setResume(initialState);
-  //     setStep(1);
-  //   }
-  // }, [pathname]);
-
   React.useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+    }
+
     const savedResume = localStorage.getItem("resume");
     if (savedResume) {
       setResume(JSON.parse(savedResume));
@@ -93,10 +87,11 @@ export function ResumeProvider({ children }) {
 
   const saveResume = async () => {
     try {
-      const data = await saveResumeToDb(resume);
+      const data = await saveResumeToDb(resume, token);
+      alert(data);
       setResume(data);
       localStorage.removeItem("resume");
-      toast.success("🎉 Resume saved. Keep building");
+      toast.success("Resume saved.");
       router.push(`/dashboard/resume/edit/${data._id}`);
       setStep(2);
     } catch (err) {
@@ -107,7 +102,7 @@ export function ResumeProvider({ children }) {
 
   const getUserResumes = async () => {
     try {
-      const data = await getUserResumesFromDb();
+      const data = await getUserResumesFromDb(token);
       setResumes(data);
     } catch (err) {
       console.error(err);
@@ -127,9 +122,9 @@ export function ResumeProvider({ children }) {
 
   const updateResume = async () => {
     try {
-      const data = await updateResumeFromDb(resume);
+      const data = await updateResumeFromDb(resume, token);
       setResume(data);
-      toast.success("🎉 Resume updated. Keep building!");
+      toast.success("Resume updated.");
     } catch (err) {
       console.error(err);
       toast.error("Failed to update resume");
@@ -144,7 +139,7 @@ export function ResumeProvider({ children }) {
         experience: experienceList,
       });
       setResume(data);
-      toast.success("🎉 Experience updated. Keep building!");
+      toast.success("Experience updated. Keep building!");
     } catch (err) {
       console.error(err);
       toast.error("Failed to update experience");
@@ -188,7 +183,6 @@ export function ResumeProvider({ children }) {
     if (experienceList.length === 1) return;
     const newEntries = experienceList.slice(0, experienceList.length - 1);
     setExperienceList(newEntries);
-    // update the db with updated experience array
     updateExperience(newEntries);
   };
 

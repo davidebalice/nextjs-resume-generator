@@ -1,16 +1,14 @@
 import TopNav from "@/components/nav/top-nav";
+import { AuthProvider } from "@/context/authContext";
 import { ResumeProvider } from "@/context/resume";
 import { ThemeProvider } from "@/context/theme";
 import { Inter } from "next/font/google";
 import "./globals.css";
-//import { ClerkProvider } from "@clerk/nextjs";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "AI Resume Builder",
-  description:
-    "Free AI powered resume builder to build a professional resume in minutes. Download print or share for free with anyone in the world!",
+  title: "Next.js - Resume generator",
+  description: "Generate and download your resume.",
 };
 
 export default function RootLayout({ children }) {
@@ -24,8 +22,10 @@ export default function RootLayout({ children }) {
           disableTransitionOnChange
         >
           <ResumeProvider>
-            <TopNav />
-            {children}
+            <AuthProvider>
+              <TopNav />
+              {children}
+            </AuthProvider>
           </ResumeProvider>
         </ThemeProvider>
       </body>

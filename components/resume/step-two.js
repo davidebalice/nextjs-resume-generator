@@ -9,9 +9,7 @@ import "react-quill/dist/quill.snow.css";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export default function StepTwo() {
-  // context
   const { resume, setResume, updateResume, setStep } = useResume();
-  // state
   const [loading, setLoading] = React.useState(false);
 
   const handleSubmit = (e) => {

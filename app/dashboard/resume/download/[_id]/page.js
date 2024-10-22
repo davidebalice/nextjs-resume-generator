@@ -36,9 +36,9 @@ export default function DownloadPage({ params }) {
     <div className="flex justify-center items-center min-h-screen mx-5 my-20 overflow-auto">
       <div className="text-center w-full md:w-1/3">
         <h2 className="font-bold text-lg">
-          🎉 Contrats! Your AI powered resume is ready!
+         Resume is ready!
         </h2>
-        <p>You can now download, print or share it with anyone.</p>
+        <p>You can now download, print or share.</p>
 
         <div className="flex justify-between my-20">
           <div className="flex flex-col items-center">

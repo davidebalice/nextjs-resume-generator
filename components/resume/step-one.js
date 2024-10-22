@@ -1,19 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useResume } from "@/context/resume";
-//import { SignInButton } from "@clerk/nextjs";
 import { HexColorPicker } from "react-colorful";
 
 export default function StepOne() {
-  // context
   const { resume, setResume, updateResume, setStep } = useResume();
-  // hooks
-  //const { isSignedIn } = useUser();
-  const isSignedIn = null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // update resume
     updateResume();
     setStep(2);
   };
@@ -21,10 +15,8 @@ export default function StepOne() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // update the resume state
     setResume((prevState) => {
       const updatedResume = { ...prevState, [name]: value };
-      // save the updated resume to local storage
       localStorage.setItem("resume", JSON.stringify(updatedResume));
       return updatedResume;
     });
@@ -87,11 +79,7 @@ export default function StepOne() {
       />
 
       <div className="flex justify-end">
-        {!isSignedIn ? (
-          <Button>Sign in to save</Button>
-        ) : (
-          <Button onClick={handleSubmit}>Save</Button>
-        )}
+        <Button onClick={handleSubmit}>Save</Button>
       </div>
     </div>
   );

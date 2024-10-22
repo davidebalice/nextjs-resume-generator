@@ -1,15 +1,10 @@
-import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useResume } from "@/context/resume";
-//import { useUser, SignInButton } from "@clerk/nextjs";
 
 export default function StepOneCreate() {
-  // context
   const { resume, setResume, saveResume } = useResume();
-  // hooks
-  //const { isSignedIn } = useUser();
-  const isSignedIn  = null;
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,10 +14,8 @@ export default function StepOneCreate() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // update the resume state
     setResume((prevState) => {
       const updatedResume = { ...prevState, [name]: value };
-      // save the updated resume to local storage
       localStorage.setItem("resume", JSON.stringify(updatedResume));
       return updatedResume;
     });
@@ -80,11 +73,7 @@ export default function StepOneCreate() {
       />
 
       <div className="flex justify-end">
-        {!isSignedIn ? (
-            <Button>Sign in to save</Button>
-        ) : (
-          <Button onClick={handleSubmit}>Save</Button>
-        )}
+        <Button onClick={handleSubmit}>Save</Button>
       </div>
     </div>
   );
