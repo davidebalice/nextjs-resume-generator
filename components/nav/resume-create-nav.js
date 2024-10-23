@@ -1,6 +1,5 @@
-import React from "react";
-import { useResume } from "@/context/resume";
 import { Button } from "@/components/ui/button";
+import { useResume } from "@/context/resume";
 import { usePathname } from "next/navigation";
 
 export default function ResumeCreateNav() {
@@ -11,6 +10,7 @@ export default function ResumeCreateNav() {
   return (
     <nav className="flex justify-center w-full py-4">
       <div className="flex space-x-4">
+        <p className="stepTitle">Step</p>
         {[1, 2, 3, 4, 5].map((item) => (
           <Button
             className={`w-10 h-10 flex items-center justify-center rounded-full transition hover:bg-primary hover:text-slate-200 ${

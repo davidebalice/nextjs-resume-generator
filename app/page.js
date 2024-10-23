@@ -13,10 +13,9 @@ export default function HomePage() {
       {isAuthenticated ? (
         <>
           <div
-            className="relative bg-cover bg-center"
+            className="relative bg-cover bg-center hero"
             style={{
-              backgroundImage: 'url("/bg.jpg")',
-              height: "50vh",
+              backgroundImage: "url('/bg.jpg')",
             }}
           >
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#010818] z-0"></div>
@@ -24,9 +23,11 @@ export default function HomePage() {
             <div className="relative z-10 flex items-center justify-center h-full">
               <div className="text-center">
                 <h1 className="text-white text-5xl font-bold mb-6">
-                  Create Resume
+                  Resume generator
                 </h1>
-                <p className="text-white mb-5 max-w-2xl mx-auto">lorem ipsum</p>
+                <p className="text-white mb-5 max-w-2xl mx-auto">
+                  Insert your data, save, and print Resume
+                </p>
                 <Link href="/resume/create">
                   <Button size="lg" className="text-lg px-8 py-4">
                     Start <ArrowRight className="ml-2" />

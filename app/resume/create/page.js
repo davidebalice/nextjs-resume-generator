@@ -15,14 +15,15 @@ export default function ResumeCreatePage() {
   const { isAuthenticated, handleLogin } = useAuth();
 
   return (
-    <div className="flex flex-col lg:flex-row h-screen overflow-y-auto">
+    <div className="flex flex-col lg:flex-row h-screen overflow-y-auto resumePage">
       {isAuthenticated ? (
         <>
-          <div className="flex flex-col lg:w-1/2 p-4 lg:order-last lg:flex lg:justify-center lg:items-center">
+          <div className="flex flex-col lg:w-1/2 p-4 lg:order-last lg:flex lg:justify-start lg:items-center">
+            <p className="resumeText">Resume preview</p>
             <PreviewCard />
           </div>
 
-          <div className="flex flex-col lg:w-1/2 p-4 lg:order-first lg:flex lg:justify-center lg:items-start">
+          <div className="flex flex-col lg:w-1/2 p-4 lg:order-first lg:flex lg:justify-start lg:items-start">
             <ResumeCreateNav />
             {step === 1 && <StepOneCreate />}
             {step === 2 && <StepTwo />}

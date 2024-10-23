@@ -22,7 +22,7 @@ export default function StepFive() {
   ];
 
   return (
-    <div className="w-full p-5 shadow-lg border-t-4 rounded-lg overflow-y-auto">
+    <div className="w-full p-5 shadow-lg border-t-4 rounded-lg overflow-y-auto bg-white">
       <h2 className="text-2xl font-bold mb-5">Skills</h2>
 
       {skillsList?.length > 0 &&
