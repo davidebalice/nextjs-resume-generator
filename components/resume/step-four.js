@@ -1,10 +1,10 @@
-import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Plus, X } from "lucide-react";
 import { useResume } from "@/context/resume";
+import { ArrowRight, Plus, X } from "lucide-react";
 
 export default function SetpFour() {
+  const token = localStorage.getItem("token");
   const {
     educationList,
     handleEducationChange,
@@ -67,7 +67,7 @@ export default function SetpFour() {
           </Button>
         )}
 
-        <Button variant="outline" onClick={handleEducationSubmit}>
+        <Button variant="outline" onClick={() => handleEducationSubmit(token)}>
           <ArrowRight size={18} className="mr-2" /> Next
         </Button>
       </div>

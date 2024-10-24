@@ -22,28 +22,41 @@ export default function Login({ onLogin }) {
   };
 
   return (
-    <div className="absolute top-5 right-5 bg-white shadow-lg p-5 rounded">
-      <h1 className="text-lg font-bold">Login</h1>
-      <input
-        type="text"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-        className="border rounded p-2 my-2 w-full"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-        className="border rounded p-2 my-2 w-full"
-      />
-      <button
-        onClick={handleLogin}
-        className="bg-blue-500 text-white py-2 px-4 rounded w-full"
+    <div className="relative text-gray-900">
+      <div
+        className="relative bg-cover bg-center hero"
+        style={{
+          backgroundImage: "url('/bg.jpg')",
+        }}
       >
-        Login
-      </button>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#010818] z-0"></div>
+
+        <div className="flex justify-center items-center hero">
+          <div className="relative bg-white shadow-lg p-5 rounded z-10">
+            <h1 className="text-lg font-bold text-center">Resume generator</h1>
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              className="border rounded p-2 my-2 w-full"
+            />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              className="border rounded p-2 my-2 w-full"
+            />
+            <button
+              onClick={handleLogin}
+              className="bg-black text-white py-2 px-4 rounded w-full"
+            >
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

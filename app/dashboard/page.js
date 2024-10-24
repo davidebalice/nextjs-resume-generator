@@ -1,13 +1,28 @@
 "use client";
-import React from "react";
-import { useResume } from "@/context/resume";
-import SkeletonCard from "@/components/cards/skeleton-card";
 import ResumeCard from "@/components/cards/resume-card";
+import SkeletonCard from "@/components/cards/skeleton-card";
+import { useAuth } from "@/context/authContext";
+import { useResume } from "@/context/resume";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Dashboard() {
   const { resumes } = useResume();
+  const { isAuthenticated, isLoadingAuth } = useAuth();
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
 
-  if (!resumes?.length) {
+  useEffect(() => {
+    if (!isLoadingAuth) {
+      setIsLoading(false);
+    } else {
+      if (!isAuthenticated) {
+        router.push("/");
+      }
+    }
+  }, [isAuthenticated, isLoadingAuth, router]);
+
+  if (!resumes?.length && !isLoading) {
     return (
       <div>
         <p className="text-center my-5">Loading...</p>

@@ -1,3 +1,4 @@
+import Footer from "@/components/nav/footer";
 import TopNav from "@/components/nav/top-nav";
 import { AuthProvider } from "@/context/authContext";
 import { ResumeProvider } from "@/context/resume";
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
             <AuthProvider>
               <TopNav />
               {children}
+              <Footer />
             </AuthProvider>
           </ResumeProvider>
         </ThemeProvider>

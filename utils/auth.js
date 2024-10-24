@@ -20,7 +20,10 @@ export const logout = () => {
 };
 
 export const currentUser = async (token) => {
-  if (!token) return null;
+  if (!token) {
+    console.log("token non trovato currentUser");
+    return null;
+  }
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const res = await fetch(`${apiUrl}/api/auth/getCurrentUser`, {
     method: "GET",

@@ -4,6 +4,9 @@ import Resume from "@/models/resume";
 import { currentUser } from "@/utils/auth";
 
 const checkOwnership = async (resumeId, token) => {
+  if (!token) {
+    console.log("token not found: checkOwnership");
+  }
   try {
     const user = await currentUser(token);
     const userEmail = user?.email;
@@ -27,12 +30,15 @@ const checkOwnership = async (resumeId, token) => {
 };
 
 export const saveResumeToDb = async (data, token) => {
+  if (!token) {
+    console.log("token not found: saveResumeToDb");
+  }
   try {
     db();
     const user = await currentUser(token);
-
+    //console.log(user);
     const userEmail = user?.email;
-
+    //console.log(userEmail);
     const { _id, ...rest } = data;
 
     const resume = await Resume.create({ ...rest, userEmail });
@@ -43,6 +49,9 @@ export const saveResumeToDb = async (data, token) => {
 };
 
 export const getUserResumesFromDb = async (token) => {
+  if (!token) {
+    console.log("token not found: getUserResumesFromDb");
+  }
   try {
     db();
     const user = await currentUser(token);
@@ -56,7 +65,10 @@ export const getUserResumesFromDb = async (token) => {
   }
 };
 
-export const getResumeFromDb = async (_id) => {
+export const getResumeFromDb = async (_id, token) => {
+  if (!token) {
+    console.log("token not found: getResumeFromDb");
+  }
   try {
     db();
     const resume = await Resume.findById(_id);
@@ -67,6 +79,9 @@ export const getResumeFromDb = async (_id) => {
 };
 
 export const updateResumeFromDb = async (data, token) => {
+  if (!token) {
+    console.log("token not found: updateResumeFromDb");
+  }
   try {
     db();
     const { _id, ...rest } = data;
@@ -85,17 +100,21 @@ export const updateResumeFromDb = async (data, token) => {
   }
 };
 
-export const updateExperienceToDb = async (data, token) => {
+export const updateExperienceToDb = async (data) => {
   try {
     db();
-    const { _id, experience } = data;
+    const { _id, experience, token } = data;
 
     await checkOwnership(_id, token);
+    if (!token) {
+      console.log("token not found: updateExperienceToDb");
+    }
 
     const resume = await Resume.findByIdAndUpdate(
       _id,
       { experience },
-      { new: true }
+      { new: true },
+      token
     );
     return JSON.parse(JSON.stringify(resume));
   } catch (err) {
@@ -103,10 +122,13 @@ export const updateExperienceToDb = async (data, token) => {
   }
 };
 
-export const updateEducationToDb = async (data, token) => {
+export const updateEducationToDb = async (data) => {
   try {
     db();
-    const { _id, education } = data;
+    const { _id, education, token } = data;
+    if (!token) {
+      console.log("token not found: updateEducationToDb");
+    }
 
     await checkOwnership(_id, token);
 
@@ -121,11 +143,13 @@ export const updateEducationToDb = async (data, token) => {
   }
 };
 
-export const updateSkillsToDb = async (data, token) => {
+export const updateSkillsToDb = async (data) => {
   try {
     db();
-    const { _id, skills } = data;
-
+    const { _id, skills, token } = data;
+    if (!token) {
+      console.log("token not found: updateSkillsToDb");
+    }
     await checkOwnership(_id, token);
 
     const resume = await Resume.findByIdAndUpdate(
@@ -140,6 +164,9 @@ export const updateSkillsToDb = async (data, token) => {
 };
 
 export const deleteResumeFromDb = async (_id, token) => {
+  if (!token) {
+    console.log("token not found: deleteResumeFromDb");
+  }
   try {
     db();
     await checkOwnership(_id, token);

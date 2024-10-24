@@ -1,13 +1,13 @@
-import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useResume } from "@/context/resume";
+import { ArrowRight, Plus, X } from "lucide-react";
 import dynamic from "next/dynamic";
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
-import { ArrowRight, Plus, X, Loader2Icon, Brain } from "lucide-react";
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export default function StepThree() {
+  const token = localStorage.getItem("token");
   const {
     experienceList,
     handleExperienceChange,
@@ -76,24 +76,9 @@ export default function StepThree() {
               theme="snow"
               onChange={(value) => handleExperienceQuillChange(value, index)}
               value={experience.summary}
-              className="mb-2"
+              className="mb-2 custom-quill2"
               placeholder="Job summary"
             />
-
-            <div className="flex justify-end">
-              <Button
-                variant="destructive"
-                onClick={() => handleExperienceGenerateWithAi(index)}
-                disabled={experienceLoading[index]}
-              >
-                {experienceLoading[index] ? (
-                  <Loader2Icon size={18} className="mr-2 animate-spin" />
-                ) : (
-                  <Brain size={18} className="mr-2" />
-                )}
-                Generate with AI
-              </Button>
-            </div>
           </div>
         ))}
 
@@ -103,12 +88,12 @@ export default function StepThree() {
         </Button>
 
         {experienceList?.length > 1 && (
-          <Button variant="outline" onClick={removeExperience}>
+          <Button variant="outline" onClick={() => removeExperience(token)}>
             <X size={18} className="mr-2" /> Remove
           </Button>
         )}
 
-        <Button variant="outline" onClick={handleExperienceSubmit}>
+        <Button variant="outline" onClick={() => handleExperienceSubmit(token)}>
           <ArrowRight size={18} className="mr-2" /> Next
         </Button>
       </div>

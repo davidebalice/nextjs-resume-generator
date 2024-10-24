@@ -6,14 +6,16 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoadingAuth, setIsLoadingAuth] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       setIsAuthenticated(true);
     }
+    setIsLoadingAuth(false);
   }, []);
-
+  
   const handleLogin = () => {
     setIsAuthenticated(true);
   };

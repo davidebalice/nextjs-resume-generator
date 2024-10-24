@@ -1,10 +1,10 @@
-import React from "react";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Plus, X } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import { useResume } from "@/context/resume";
+import { ArrowRight, Plus, X } from "lucide-react";
 
 export default function StepFive() {
+  const token = localStorage.getItem("token");
   const {
     skillsList,
     handleSkillsChange,
@@ -68,7 +68,7 @@ export default function StepFive() {
           </Button>
         )}
 
-        <Button variant="outline" onClick={handleSkillsSubmit}>
+        <Button variant="outline" onClick={() => handleSkillsSubmit(token)}>
           <ArrowRight size={18} className="mr-2" /> Next
         </Button>
       </div>

@@ -9,7 +9,7 @@ export default function HomePage() {
   const { isAuthenticated, handleLogin } = useAuth();
 
   return (
-    <div className="relative min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div className="relative text-gray-900">
       {isAuthenticated ? (
         <>
           <div
@@ -20,7 +20,9 @@ export default function HomePage() {
           >
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#010818] z-0"></div>
 
-            <div className="relative z-10 flex items-center justify-center h-full">
+            <div
+              className="relative z-10 flex items-center justify-center hero"
+            >
               <div className="text-center">
                 <h1 className="text-white text-5xl font-bold mb-6">
                   Resume generator

@@ -63,6 +63,8 @@ export function ResumeProvider({ children }) {
   const { _id } = useParams();
   const pathname = usePathname();
 
+  console.log("token in context: " + token);
+
   React.useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
@@ -76,19 +78,18 @@ export function ResumeProvider({ children }) {
   }, []);
 
   React.useEffect(() => {
-    getUserResumes();
-  }, []);
+    getUserResumes(token);
+  }, [token]);
 
   React.useEffect(() => {
     if (_id) {
-      getResume(_id);
+      getResume(_id, token);
     }
-  }, [_id]);
+  }, [_id, token]);
 
   const saveResume = async () => {
     try {
       const data = await saveResumeToDb(resume, token);
-      alert(data);
       setResume(data);
       localStorage.removeItem("resume");
       toast.success("Resume saved.");
@@ -100,7 +101,7 @@ export function ResumeProvider({ children }) {
     }
   };
 
-  const getUserResumes = async () => {
+  const getUserResumes = async (token) => {
     try {
       const data = await getUserResumesFromDb(token);
       setResumes(data);
@@ -110,9 +111,9 @@ export function ResumeProvider({ children }) {
     }
   };
 
-  const getResume = async () => {
+  const getResume = async (token) => {
     try {
-      const data = await getResumeFromDb(_id);
+      const data = await getResumeFromDb(_id, token);
       setResume(data);
     } catch (err) {
       console.error(err);
@@ -120,7 +121,7 @@ export function ResumeProvider({ children }) {
     }
   };
 
-  const updateResume = async () => {
+  const updateResume = async (token) => {
     try {
       const data = await updateResumeFromDb(resume, token);
       setResume(data);
@@ -131,15 +132,15 @@ export function ResumeProvider({ children }) {
     }
   };
 
-  // experience section
-  const updateExperience = async (experienceList) => {
+  const updateExperience = async (experienceList, token) => {
     try {
       const data = await updateExperienceToDb({
         ...resume,
         experience: experienceList,
+        token,
       });
       setResume(data);
-      toast.success("Experience updated. Keep building!");
+      toast.success("Experience updated.");
     } catch (err) {
       console.error(err);
       toast.error("Failed to update experience");
@@ -165,8 +166,8 @@ export function ResumeProvider({ children }) {
     setExperienceList(newEntries);
   };
 
-  const handleExperienceSubmit = () => {
-    updateExperience(experienceList);
+  const handleExperienceSubmit = (token) => {
+    updateExperience(experienceList, token);
     setStep(4);
   };
 
@@ -179,11 +180,11 @@ export function ResumeProvider({ children }) {
     }));
   };
 
-  const removeExperience = () => {
+  const removeExperience = (token) => {
     if (experienceList.length === 1) return;
     const newEntries = experienceList.slice(0, experienceList.length - 1);
     setExperienceList(newEntries);
-    updateExperience(newEntries);
+    updateExperience(newEntries, token);
   };
 
   const handleExperienceGenerateWithAi = async (index) => {
@@ -232,14 +233,15 @@ export function ResumeProvider({ children }) {
     }
   }, [resume]);
 
-  const updateEducation = async (educationList) => {
+  const updateEducation = async (educationList, token) => {
     try {
       const data = await updateEducationToDb({
         ...resume,
         education: educationList,
+        token,
       });
       setResume(data);
-      toast.success("🎉 Education updated. Keep building!");
+      toast.success("Education updated.");
     } catch (err) {
       console.error(err);
       toast.error("Failed to update education");
@@ -253,8 +255,8 @@ export function ResumeProvider({ children }) {
     setEducationList(newEntries);
   };
 
-  const handleEducationSubmit = () => {
-    updateEducation(educationList);
+  const handleEducationSubmit = (token) => {
+    updateEducation(educationList, token);
     setStep(5);
   };
 
@@ -267,12 +269,11 @@ export function ResumeProvider({ children }) {
     }));
   };
 
-  const removeEducation = () => {
+  const removeEducation = (token) => {
     if (educationList.length === 1) return;
     const newEntries = educationList.slice(0, educationList.length - 1);
     setEducationList(newEntries);
-    // update the db with updated education array
-    updateEducation(newEntries);
+    updateEducation(newEntries, token);
   };
 
   // skills section
@@ -282,8 +283,7 @@ export function ResumeProvider({ children }) {
     }
   }, [resume]);
 
-  const updateSkills = async (skillsList) => {
-    // validate that each skill has both name and level
+  const updateSkills = async (skillsList, token) => {
     const invalidSkills = skillsList.filter(
       (skill) => !skill.name || !skill.level
     );
@@ -297,9 +297,10 @@ export function ResumeProvider({ children }) {
       const data = await updateSkillsToDb({
         ...resume,
         skills: skillsList,
+        token,
       });
       setResume(data);
-      toast.success("🎉 Skills updated. Keep building!");
+      toast.success("Skills updated.");
     } catch (err) {
       console.error(err);
       toast.error("Failed to update skills");
@@ -313,8 +314,8 @@ export function ResumeProvider({ children }) {
     setSkillsList(newEntries);
   };
 
-  const handleSkillsSubmit = () => {
-    updateSkills(skillsList);
+  const handleSkillsSubmit = (token) => {
+    updateSkills(skillsList, token);
     router.push(`/dashboard/resume/download/${resume._id}`);
   };
 
@@ -327,19 +328,18 @@ export function ResumeProvider({ children }) {
     }));
   };
 
-  const removeSkill = () => {
+  const removeSkill = (token) => {
     if (skillsList.length === 1) return;
     const newEntries = skillsList.slice(0, skillsList.length - 1);
     setSkillsList(newEntries);
-    // update the db with updated skills array
-    updateSkills(newEntries);
+    updateSkills(newEntries, token);
   };
 
-  const deleteResume = async (_id) => {
+  const deleteResume = async (_id, token) => {
     try {
-      await deleteResumeFromDb(_id);
+      await deleteResumeFromDb(_id, token);
       setResumes(resumes.filter((resume) => resume._id !== _id));
-      toast.success("🎉 Resume deleted");
+      toast.success("Resume deleted");
     } catch (err) {
       console.error(err);
       toast.error("Failed to delete resume");

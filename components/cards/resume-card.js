@@ -1,19 +1,18 @@
 "use client";
-import PersonalDetails from "@/components/preview/personal-details";
-import Summary from "@/components/preview/summary";
-import Experience from "@/components/preview/experience";
 import Education from "@/components/preview/education";
+import Experience from "@/components/preview/experience";
+import PersonalDetails from "@/components/preview/personal-details";
 import Skills from "@/components/preview/skills";
+import Summary from "@/components/preview/summary";
 import { Button } from "@/components/ui/button";
-import { UserPen, Download, Trash } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useResume } from "@/context/resume";
+import { Download, Trash, UserPen } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function ResumeCard({ resume }) {
-  // context
   const { deleteResume } = useResume();
-  // hooks
   const router = useRouter();
+  const token = localStorage.getItem("token");
 
   return (
     <div
@@ -53,7 +52,7 @@ export default function ResumeCard({ resume }) {
           >
             <Download />
           </Button>
-          <Button onClick={() => deleteResume(resume._id)}>
+          <Button onClick={() => deleteResume(resume._id, token)}>
             <Trash />
           </Button>
         </div>

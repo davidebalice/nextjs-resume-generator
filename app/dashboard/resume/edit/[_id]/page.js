@@ -1,6 +1,5 @@
 "use client";
 import PreviewCard from "@/components/cards/preview-card";
-import Login from "@/components/login/login";
 import ResumeCreateNav from "@/components/nav/resume-create-nav";
 import StepFive from "@/components/resume/step-five";
 import StepFour from "@/components/resume/step-four";
@@ -9,14 +8,20 @@ import StepThree from "@/components/resume/step-three";
 import StepTwo from "@/components/resume/step-two";
 import { useAuth } from "@/context/authContext";
 import { useResume } from "@/context/resume";
+import { useRouter } from "next/navigation";
 
 export default function ResumeGenerator() {
   const { step } = useResume();
-  const { isAuthenticated, handleLogin } = useAuth();
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
+
+  if (!isAuthenticated) {
+    router.push("/");
+    return null;
+  }
   
   return (
     <div className="flex flex-col lg:flex-row h-screen overflow-y-auto resumePage">
-      {isAuthenticated ? (
         <>
           <div className="flex flex-col lg:w-1/2 p-4 lg:order-last lg:flex lg:justify-start lg:items-center">
           <p className="resumeText">Resume preview</p>
@@ -31,9 +36,7 @@ export default function ResumeGenerator() {
             {step === 5 && <StepFive />}
           </div>
         </>
-      ) : (
-        <Login onLogin={handleLogin} />
-      )}
+   
     </div>
   );
 }

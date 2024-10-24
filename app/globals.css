@@ -87,7 +87,13 @@
 }
 
 .hero {
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 71px);
+}
+
+footer {
+  background-color: #111;
+  color: white;
+  font-size: 14px;
 }
 
 /* on preview */
@@ -137,4 +143,12 @@
   background: url("/bg2.jpg");
   background-size: cover;
   background-position: left bottom;
+}
+
+.custom-quill .ql-editor {
+  min-height: 400px;
+}
+
+.custom-quill2 .ql-editor {
+  min-height: 160px;
 }

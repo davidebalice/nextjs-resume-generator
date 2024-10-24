@@ -1,7 +1,6 @@
 import { runAi } from "@/actions/ai";
 import { Button } from "@/components/ui/button";
 import { useResume } from "@/context/resume";
-import { Brain, Loader2Icon } from "lucide-react";
 import dynamic from "next/dynamic";
 import React from "react";
 import toast from "react-hot-toast";
@@ -11,10 +10,11 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 export default function StepTwo() {
   const { resume, setResume, updateResume, setStep } = useResume();
   const [loading, setLoading] = React.useState(false);
+  const token = localStorage.getItem("token");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateResume();
+    updateResume(token);
     setStep(3);
   };
 
@@ -41,34 +41,13 @@ export default function StepTwo() {
     <div className="w-full p-5 shadow-lg border-t-4 rounded-lg bg-white">
       <div className="flex justify-between">
         <h2 className="text-2xl font-bold mb-5">Summary</h2>
-
-        <Button
-          variant="destructive"
-          onClick={handleGenerateWithAi}
-          disabled={loading}
-        >
-          {loading ? (
-            <Loader2Icon size={18} className="mr-2 animate-spin" />
-          ) : (
-            <Brain size={18} className="mr-2" />
-          )}
-          Generate with AI
-        </Button>
       </div>
-
-      {/* <Textarea
-        onChange={(e) => setResume({ ...resume, summary: e.target.value })}
-        value={resume.summary}
-        className="mb-3"
-        placeholde="Write a summary about yourself"
-        rows="10"
-        required
-      /> */}
 
       <ReactQuill
         theme="snow"
         onChange={(e) => setResume({ ...resume, summary: e })}
         value={resume.summary}
+        className="custom-quill"
       />
 
       <div className="flex justify-end mt-3">
