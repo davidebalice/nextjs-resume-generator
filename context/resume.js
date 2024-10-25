@@ -1,5 +1,5 @@
 "use client";
-import { runAi } from "@/actions/ai";
+
 import {
   deleteResumeFromDb,
   getResumeFromDb,
@@ -9,9 +9,9 @@ import {
   updateExperienceToDb,
   updateResumeFromDb,
   updateSkillsToDb,
-} from "@/actions/resume";
-import { useParams, usePathname, useRouter } from "next/navigation";
-import React from "react";
+} from "@/controller/resume";
+import { useParams, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const ResumeContext = React.createContext();
@@ -50,22 +50,21 @@ const initialState = {
 };
 
 export function ResumeProvider({ children }) {
-  const [resume, setResume] = React.useState(initialState);
-  const [resumes, setResumes] = React.useState([]);
-  const [step, setStep] = React.useState(1);
-  const [experienceList, setExperienceList] = React.useState([experienceField]);
-  const [experienceLoading, setExperienceLoading] = React.useState({});
-  const [educationList, setEducationList] = React.useState([educationField]);
-  const [skillsList, setSkillsList] = React.useState([skillField]);
-  const [token, setToken] = React.useState(null);
+  const [resume, setResume] = useState(initialState);
+  const [resumes, setResumes] = useState([]);
+  const [step, setStep] = useState(1);
+  const [experienceList, setExperienceList] = useState([experienceField]);
+  const [experienceLoading, setExperienceLoading] = useState({});
+  const [educationList, setEducationList] = useState([educationField]);
+  const [skillsList, setSkillsList] = useState([skillField]);
+  const [token, setToken] = useState(null);
 
   const router = useRouter();
   const { _id } = useParams();
-  const pathname = usePathname();
 
   console.log("token in context: " + token);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       setToken(storedToken);
@@ -77,23 +76,24 @@ export function ResumeProvider({ children }) {
     }
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     getUserResumes(token);
   }, [token]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (_id) {
       getResume(_id, token);
     }
   }, [_id, token]);
 
-  const saveResume = async () => {
+  const saveResume = async (token) => {
     try {
       const data = await saveResumeToDb(resume, token);
       setResume(data);
       localStorage.removeItem("resume");
       toast.success("Resume saved.");
       router.push(`/dashboard/resume/edit/${data._id}`);
+      getUserResumes(token);
       setStep(2);
     } catch (err) {
       console.error(err);
@@ -125,6 +125,7 @@ export function ResumeProvider({ children }) {
     try {
       const data = await updateResumeFromDb(resume, token);
       setResume(data);
+      getUserResumes(token);
       toast.success("Resume updated.");
     } catch (err) {
       console.error(err);
@@ -140,6 +141,7 @@ export function ResumeProvider({ children }) {
         token,
       });
       setResume(data);
+      getUserResumes(token);
       toast.success("Experience updated.");
     } catch (err) {
       console.error(err);
@@ -147,7 +149,7 @@ export function ResumeProvider({ children }) {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (resume.experience) {
       setExperienceList(resume.experience);
     }
@@ -227,7 +229,7 @@ export function ResumeProvider({ children }) {
   };
 
   // education section
-  React.useEffect(() => {
+  useEffect(() => {
     if (resume.education) {
       setEducationList(resume.education);
     }
@@ -277,7 +279,7 @@ export function ResumeProvider({ children }) {
   };
 
   // skills section
-  React.useEffect(() => {
+  useEffect(() => {
     if (resume.skills) {
       setSkillsList(resume.skills);
     }
@@ -339,6 +341,7 @@ export function ResumeProvider({ children }) {
     try {
       await deleteResumeFromDb(_id, token);
       setResumes(resumes.filter((resume) => resume._id !== _id));
+      getUserResumes(token);
       toast.success("Resume deleted");
     } catch (err) {
       console.error(err);

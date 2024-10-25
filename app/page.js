@@ -20,9 +20,7 @@ export default function HomePage() {
           >
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#010818] z-0"></div>
 
-            <div
-              className="relative z-10 flex items-center justify-center hero"
-            >
+            <div className="relative z-10 flex items-center justify-center hero">
               <div className="text-center">
                 <h1 className="text-white text-5xl font-bold mb-6">
                   Resume generator

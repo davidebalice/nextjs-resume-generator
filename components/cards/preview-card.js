@@ -10,7 +10,7 @@ export default function PreviewCard() {
 
   return (
     <div
-      className="shadow-lg max-h-screen w-full rounded-xl p-5 border-t-[20px] overflow-y-auto bg-white"
+      className="shadow-lg max-h-screen w-full rounded p-5 border-t-[20px] overflow-y-auto bg-white"
       style={{ borderColor: resume?.themeColor }}
     >
       <PersonalDetails resume={resume} />

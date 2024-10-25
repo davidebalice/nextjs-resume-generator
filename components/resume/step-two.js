@@ -1,4 +1,3 @@
-import { runAi } from "@/actions/ai";
 import { Button } from "@/components/ui/button";
 import { useResume } from "@/context/resume";
 import dynamic from "next/dynamic";
@@ -38,7 +37,7 @@ export default function StepTwo() {
   };
 
   return (
-    <div className="w-full p-5 shadow-lg border-t-4 rounded-lg bg-white">
+    <div className="w-full p-5 shadow-lg border-t-4 rounded bg-white">
       <div className="flex justify-between">
         <h2 className="text-2xl font-bold mb-5">Summary</h2>
       </div>

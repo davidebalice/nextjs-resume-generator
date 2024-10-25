@@ -20,7 +20,7 @@ export default function StepThree() {
   } = useResume();
 
   return (
-    <div className="w-full p-5 shadow-lg border-t-4 rounded-lg overflow-y-auto bg-white">
+    <div className="w-full p-5 shadow-lg border-t-4 rounded overflow-y-auto bg-white">
       <h2 className="text-2xl font-bold mb-5">Experiences</h2>
 
       {experienceList?.length > 0 &&

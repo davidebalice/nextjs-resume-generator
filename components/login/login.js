@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 export default function Login({ onLogin }) {
@@ -33,27 +34,49 @@ export default function Login({ onLogin }) {
 
         <div className="flex justify-center items-center hero">
           <div className="relative bg-white shadow-lg p-5 rounded z-10">
-            <h1 className="text-lg font-bold text-center">Resume generator</h1>
-            <input
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              className="border rounded p-2 my-2 w-full"
-            />
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              className="border rounded p-2 my-2 w-full"
-            />
-            <button
-              onClick={handleLogin}
-              className="bg-black text-white py-2 px-4 rounded w-full"
-            >
-              Login
-            </button>
+            <div className="text-center mb-2">
+              <div className="flex justify-between w-full align-center">
+                <div>
+                  <Image
+                    src="/logo.png"
+                    alt="logo db"
+                    width={100}
+                    height={100}
+                  />
+                </div>
+                <div className="mt-2">
+                  <Image
+                    src="/next.png"
+                    alt="logo next.js"
+                    width={100}
+                    height={100}
+                  />
+                </div>
+              </div>
+              <h1 className="text-lg font-bold text-center mb-2">
+                Resume generator
+              </h1>
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                className="border rounded p-2 my-2 w-full"
+              />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                className="border rounded p-2 my-2 w-full"
+              />
+              <button
+                onClick={handleLogin}
+                className="bg-black text-white py-2 px-4 rounded w-full"
+              >
+                Login
+              </button>
+            </div>
           </div>
         </div>
       </div>

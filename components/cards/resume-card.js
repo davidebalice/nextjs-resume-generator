@@ -1,9 +1,5 @@
 "use client";
-import Education from "@/components/preview/education";
-import Experience from "@/components/preview/experience";
-import PersonalDetails from "@/components/preview/personal-details";
-import Skills from "@/components/preview/skills";
-import Summary from "@/components/preview/summary";
+import DashboardCardData from "@/components/preview/dashboard-card-data";
 import { Button } from "@/components/ui/button";
 import { useResume } from "@/context/resume";
 import { Download, Trash, UserPen } from "lucide-react";
@@ -14,14 +10,23 @@ export default function ResumeCard({ resume }) {
   const router = useRouter();
   const token = localStorage.getItem("token");
 
+  /*
+   <div
+      className="relative w-full rounded border-t-[10px] max-w-[96%] px-5  mx-auto bg-white shadow-md flex flex-col bg-white sm:w-[49%] lg:w-[31.5%] mb-5"
+      style={{ borderColor: resume?.themeColor }}
+    >
+  */
+
   return (
     <div
-      className="relative shadow-lg w-full rounded-xl p-5 border-t-[20px] max-h-screen overflow-y-auto"
+      className="relative shadow-md w-full rounded p-5 border-t-[12px] max-h-screen overflow-y-auto"
       style={{ borderColor: resume?.themeColor }}
     >
       <div className="line-clamp-3">
-        <PersonalDetails resume={resume} />
+        <DashboardCardData resume={resume} />
       </div>
+
+      {/*
       <div className="line-clamp-4">
         <Summary resume={resume} />
       </div>
@@ -37,6 +42,7 @@ export default function ResumeCard({ resume }) {
       <div className="line-clamp-4">
         <Skills resume={resume} />
       </div>
+      */}
 
       <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
         <div className="flex space-x-4">

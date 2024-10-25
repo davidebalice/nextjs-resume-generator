@@ -38,6 +38,10 @@ const ResumeSchema = new Schema(
     experience: [ExperienceSchema],
     education: [EducationSchema],
     skills: [SkillSchema],
+    demo: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
