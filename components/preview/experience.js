@@ -1,8 +1,8 @@
 "use client";
-import React from "react";
 import dynamic from "next/dynamic";
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.bubble.css";
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+import parse from "html-react-parser";
 
 export default function Experience({ resume }) {
   return (
@@ -21,14 +21,20 @@ export default function Experience({ resume }) {
             <h2 className="text-sm font-bold">{exp?.title}</h2>
             <h3 className="text-sm">{exp?.company}</h3>
             <p className="text-xs text-gray-600">{exp?.address}</p>
+            <p className="text-xs text-gray-600">{exp?.startDate} - {exp?.endDate}</p>
 
-            {exp?.summary && (
+            {/*exp?.summary && (
               <ReactQuill
                 readOnly={true}
                 value={exp.summary}
                 theme="bubble"
-                className="text-sm font-nromal"
+                className="text-sm font-normal"
+                style={{border:"2px solid red",padding:0,margin:0}}
               />
+            )*/}
+
+            {exp?.summary && (
+              <div className="text-xs font-normal mt-1">{parse(exp?.summary)}</div>
             )}
           </div>
         );
