@@ -10,16 +10,9 @@ export default function ResumeCard({ resume }) {
   const router = useRouter();
   const token = localStorage.getItem("token");
 
-  /*
-   <div
-      className="relative w-full rounded border-t-[10px] max-w-[96%] px-5  mx-auto bg-white shadow-md flex flex-col bg-white sm:w-[49%] lg:w-[31.5%] mb-5"
-      style={{ borderColor: resume?.themeColor }}
-    >
-  */
-
   return (
     <div
-      className="relative shadow-md w-full rounded p-5 border-t-[12px] max-h-screen overflow-y-auto"
+      className="relative shadow-md w-full rounded p-5 border-t-[12px] max-h-screen overflow-y-auto bg-white"
       style={{ borderColor: resume?.themeColor }}
     >
       <div className="line-clamp-3">

@@ -15,11 +15,11 @@ export default function Education({ resume }) {
         return (
           <div key={index} className="my-5">
             <h3 className="font-bold text-sm">{edu.qualification}</h3>
-            <div className="ml-2">
+           
               <p className="text-sm">{edu.name}</p>
               <p className="text-xs text-gray-600">{edu.address}</p>
               <p className="text-xs text-gray-600">{edu.year}</p>
-            </div>
+           
           </div>
         );
       })}

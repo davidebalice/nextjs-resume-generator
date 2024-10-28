@@ -15,7 +15,6 @@ export function middleware(req) {
   if (isProtectedRoute(pathname) && !isAuthenticated(req)) {
     return NextResponse.redirect("/login");
   }
-
   return NextResponse.next();
 }
 

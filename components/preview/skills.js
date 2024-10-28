@@ -13,11 +13,11 @@ export default function Skills({ resume, print = false }) {
       </h2>
       <hr style={{ borderColor: themeColor }} />
 
-      <div className="grid grid-cols-2 gap-3 my-4">
+      <div className="my-4">
         {resume?.skills.map((skill, index) => {
           return (
-            <div key={index} className="flex items-center justify-between">
-              <h2 className="text-sm font-bold">{skill?.name}</h2>
+            <div key={index} className="flex items-center justify-between mb-3">
+              <h2 className="text-sm skillContainer">{skill?.name}</h2>
 
               <div className="flex-1 ml-2">
                 {print ? (
@@ -33,7 +33,7 @@ export default function Skills({ resume, print = false }) {
                     ))}
                   </div>
                 ) : (
-                  <Progress value={skill.level * 20} />
+                  <Progress value={skill.level * 20} className="progressBar"/>
                 )}
               </div>
             </div>

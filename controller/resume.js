@@ -88,11 +88,17 @@ export const updateResumeFromDb = async (data, token) => {
 
     await checkOwnership(_id, token);
 
+    const isDemoMode = process.env.DEMO_MODE === "true";
+
     const resume = await Resume.findByIdAndUpdate(
       _id,
       { ...rest },
       { new: true }
     );
+
+    if (isDemoMode && resume.demo !== 0) {
+      throw new Error("Modifications are not allowed in demo mode.");
+    }
 
     return JSON.parse(JSON.stringify(resume));
   } catch (err) {
@@ -170,8 +176,14 @@ export const deleteResumeFromDb = async (_id, token) => {
   try {
     db();
     await checkOwnership(_id, token);
+    const isDemoMode = process.env.DEMO_MODE === "true";
 
     const resume = await Resume.findByIdAndDelete(_id);
+
+    if (isDemoMode && resume.demo !== 0) {
+      throw new Error("Modifications are not allowed in demo mode.");
+    }
+
     return JSON.parse(JSON.stringify(resume));
   } catch (err) {
     throw new Error(err);

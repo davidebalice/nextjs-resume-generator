@@ -26,7 +26,7 @@ export default function HomePage() {
                   Resume generator
                 </h1>
                 <p className="text-white mb-5 max-w-2xl mx-auto">
-                  Insert your data, save, and print Resume
+                  Insert your data, save, print and share Resume
                 </p>
                 <Link href="/resume/create">
                   <Button size="lg" className="text-lg px-8 py-4">

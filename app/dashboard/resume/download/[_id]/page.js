@@ -6,11 +6,8 @@ import { useResume } from "@/context/resume";
 import ResumeCard from "@/components/cards/resume-card";
 import toast from "react-hot-toast";
 
-
 export default function DownloadPage({ params }) {
-  // context
   const { resumes } = useResume();
-  // state
   const [currentResume, setCurrentResume] = React.useState(null);
 
   React.useEffect(() => {
@@ -33,14 +30,14 @@ export default function DownloadPage({ params }) {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen mx-5 my-20 overflow-auto">
+    <div className="flex justify-center items-center overflow-auto resumePage hero">
       <div className="text-center w-full md:w-1/3">
-        <h2 className="font-bold text-lg">
-         Resume is ready!
+        <h2 className="font-bold text-xl">
+         Resume ready
         </h2>
-        <p>You can now download, print or share.</p>
+        <p>Download, print or share</p>
 
-        <div className="flex justify-between my-20">
+        <div className="flex justify-between my-10">
           <div className="flex flex-col items-center">
             <Image
               src="https://cdn-icons-png.flaticon.com/128/1091/1091007.png"
@@ -75,7 +72,7 @@ export default function DownloadPage({ params }) {
                   `${window.location.origin}/resume/${currentResume._id}`
                 );
                 toast.success(
-                  "Link copied to clipboard to share with anyone, anywhere!"
+                  "Link copied to share"
                 );
               }}
               className="my-2"

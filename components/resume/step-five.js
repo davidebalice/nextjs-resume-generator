@@ -69,7 +69,7 @@ export default function StepFive() {
         )}
 
         <Button variant="outline" onClick={() => handleSkillsSubmit(token)}>
-          <ArrowRight size={18} className="mr-2" /> Next
+          <ArrowRight size={18} className="mr-2" /> Complete
         </Button>
       </div>
     </div>
