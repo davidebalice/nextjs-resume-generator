@@ -20,15 +20,20 @@ export default function SetpFour() {
       {educationList?.length > 0 &&
         educationList?.map((education, index) => (
           <div key={index} className="mb-10">
+            <label className="inputLabel mb-3">
+              School / University / Institute
+            </label>
             <Input
               name="name"
               type="text"
-              placeholder="School/College/University name"
+              placeholder="School / University / Institute"
               value={education.name}
               onChange={(e) => handleEducationChange(e, index)}
               className="mb-3"
               autoFocus
             />
+
+            <label className="inputLabel mb-3">Address</label>
             <Input
               name="address"
               type="text"
@@ -37,6 +42,8 @@ export default function SetpFour() {
               onChange={(e) => handleEducationChange(e, index)}
               className="mb-3"
             />
+
+            <label className="inputLabel mb-3">Qualification</label>
             <Input
               name="qualification"
               type="text"
@@ -45,10 +52,12 @@ export default function SetpFour() {
               onChange={(e) => handleEducationChange(e, index)}
               className="mb-3"
             />
+
+            <label className="inputLabel mb-3">Year</label>
             <Input
               name="year"
               type="text"
-              placeholder="Completed year"
+              placeholder="Year"
               value={education.year}
               onChange={(e) => handleEducationChange(e, index)}
               className="mb-3"

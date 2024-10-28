@@ -24,17 +24,20 @@ export default function StepOneCreate() {
   return (
     <div className="w-full p-5 shadow-lg border-t-4 rounded bg-white">
       <h2 className="text-2xl font-bold mb-5">Personal Information</h2>
-
+      
+      <label className="inputLabel mb-3">Name</label>
       <Input
         name="name"
         className="mb-3"
         onChange={handleChange}
         value={resume.name}
-        placeholder="Your name"
+        placeholder="Name"
         type="text"
         autoFocus
         required
       />
+
+      <label className="inputLabel mb-3">Job title</label>
       <Input
         name="job"
         className="mb-3"
@@ -44,6 +47,8 @@ export default function StepOneCreate() {
         type="text"
         required
       />
+
+      <label className="inputLabel mb-3">Address</label>
       <Input
         name="address"
         className="mb-3"
@@ -53,6 +58,8 @@ export default function StepOneCreate() {
         type="text"
         required
       />
+
+      <label className="inputLabel mb-3">Phone number</label>
       <Input
         name="phone"
         className="mb-3"
@@ -62,6 +69,8 @@ export default function StepOneCreate() {
         type="number"
         required
       />
+
+      <label className="inputLabel mb-3">Email</label>
       <Input
         name="email"
         className="mb-3"

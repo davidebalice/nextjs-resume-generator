@@ -36,12 +36,15 @@ export const saveResumeToDb = async (data, token) => {
   try {
     db();
     const user = await currentUser(token);
-    //console.log(user);
     const userEmail = user?.email;
-    //console.log(userEmail);
     const { _id, ...rest } = data;
-
+    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
     const resume = await Resume.create({ ...rest, userEmail });
+
+    if (isDemoMode && resume.demo === true) {
+      throw new Error("Modifications are not allowed in demo mode.");
+    }
+
     return JSON.parse(JSON.stringify(resume));
   } catch (err) {
     throw new Error(err);
@@ -88,17 +91,11 @@ export const updateResumeFromDb = async (data, token) => {
 
     await checkOwnership(_id, token);
 
-    const isDemoMode = process.env.DEMO_MODE === "true";
-
     const resume = await Resume.findByIdAndUpdate(
       _id,
       { ...rest },
       { new: true }
     );
-
-    if (isDemoMode && resume.demo !== 0) {
-      throw new Error("Modifications are not allowed in demo mode.");
-    }
 
     return JSON.parse(JSON.stringify(resume));
   } catch (err) {
@@ -115,13 +112,18 @@ export const updateExperienceToDb = async (data) => {
     if (!token) {
       console.log("token not found: updateExperienceToDb");
     }
-
+    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
     const resume = await Resume.findByIdAndUpdate(
       _id,
       { experience },
       { new: true },
       token
     );
+
+    if (isDemoMode && resume.demo === true) {
+      throw new Error("Modifications are not allowed in demo mode.");
+    }
+
     return JSON.parse(JSON.stringify(resume));
   } catch (err) {
     throw new Error(err);
@@ -138,11 +140,18 @@ export const updateEducationToDb = async (data) => {
 
     await checkOwnership(_id, token);
 
+    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
+
     const resume = await Resume.findByIdAndUpdate(
       _id,
       { education },
       { new: true }
     );
+
+    if (isDemoMode && resume.demo === true) {
+      throw new Error("Modifications are not allowed in demo mode.");
+    }
+
     return JSON.parse(JSON.stringify(resume));
   } catch (err) {
     throw new Error(err);
@@ -157,12 +166,17 @@ export const updateSkillsToDb = async (data) => {
       console.log("token not found: updateSkillsToDb");
     }
     await checkOwnership(_id, token);
-
+    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
     const resume = await Resume.findByIdAndUpdate(
       _id,
       { skills },
       { new: true }
     );
+
+    if (isDemoMode && resume.demo === true) {
+      throw new Error("Modifications are not allowed in demo mode.");
+    }
+
     return JSON.parse(JSON.stringify(resume));
   } catch (err) {
     throw new Error(err);
@@ -176,11 +190,11 @@ export const deleteResumeFromDb = async (_id, token) => {
   try {
     db();
     await checkOwnership(_id, token);
-    const isDemoMode = process.env.DEMO_MODE === "true";
+    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
 
     const resume = await Resume.findByIdAndDelete(_id);
 
-    if (isDemoMode && resume.demo !== 0) {
+    if (isDemoMode && resume.demo === true) {
       throw new Error("Modifications are not allowed in demo mode.");
     }
 

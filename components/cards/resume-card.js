@@ -19,24 +19,6 @@ export default function ResumeCard({ resume }) {
         <DashboardCardData resume={resume} />
       </div>
 
-      {/*
-      <div className="line-clamp-4">
-        <Summary resume={resume} />
-      </div>
-
-      <div className="line-clamp-4">
-        <Experience resume={resume} />
-      </div>
-
-      <div className="line-clamp-4">
-        <Education resume={resume} />
-      </div>
-
-      <div className="line-clamp-4">
-        <Skills resume={resume} />
-      </div>
-      */}
-
       <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
         <div className="flex space-x-4">
           <Button

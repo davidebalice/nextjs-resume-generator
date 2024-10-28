@@ -26,6 +26,8 @@ export default function StepThree() {
       {experienceList?.length > 0 &&
         experienceList?.map((experience, index) => (
           <div key={index} className="mb-10">
+
+            <label className="inputLabel mb-3">Name</label>
             <Input
               name="title"
               type="text"
@@ -36,6 +38,7 @@ export default function StepThree() {
               autoFocus
             />
 
+            <label className="inputLabel mb-3">Company name</label>
             <Input
               name="company"
               type="text"
@@ -45,6 +48,7 @@ export default function StepThree() {
               className="mb-3"
             />
 
+            <label className="inputLabel mb-3">Company address</label>
             <Input
               name="address"
               type="text"
@@ -54,6 +58,7 @@ export default function StepThree() {
               className="mb-3"
             />
 
+            <label className="inputLabel mb-3">Start date</label>
             <Input
               name="startDate"
               type="text"
@@ -63,6 +68,7 @@ export default function StepThree() {
               className="mb-3"
             />
 
+            <label className="inputLabel mb-3">End date</label>
             <Input
               name="endDate"
               type="text"
@@ -72,6 +78,7 @@ export default function StepThree() {
               className="mb-3"
             />
 
+            <label className="inputLabel mb-3">Description</label>
             <ReactQuill
               theme="snow"
               onChange={(value) => handleExperienceQuillChange(value, index)}

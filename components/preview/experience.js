@@ -2,15 +2,16 @@
 import parse from "html-react-parser";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.bubble.css";
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+import { BsPersonVcardFill } from "react-icons/bs";
 
 export default function Experience({ resume }) {
   return (
     <div className="my-6">
       <h2
-        className="font-bold text-sm mb-2"
+        className="font-bold text-md mb-2 flex align-item-center gap-2"
         style={{ color: resume.themeColor }}
       >
+        <BsPersonVcardFill style={{fontSize:"24px",color:"#222"}}/>
         Professional experience
       </h2>
       <hr style={{ borderColor: resume.themeColor }} />
@@ -25,9 +26,9 @@ export default function Experience({ resume }) {
               </p>
             )}
 
-            <h2 className="text-sm font-bold">{exp?.title}</h2>
-            <h3 className="text-sm">{exp?.company}</h3>
-            <p className="text-xs text-gray-600">{exp?.address}</p>
+            <h2 className="text-sm font-bold mb-1">{exp?.title}</h2>
+            <h3 className="text-sm mb-1">{exp?.company}</h3>
+            <p className="text-xs text-gray-600 mb-1">{exp?.address}</p>
 
             {exp?.summary && (
               <div className="text-xs font-normal mt-1">

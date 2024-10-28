@@ -1,6 +1,7 @@
 import React from "react";
 import { Progress } from "@/components/ui/progress";
 import { Star } from "lucide-react";
+import { FaCode } from "react-icons/fa6";
 
 export default function Skills({ resume, print = false }) {
   const themeColor = resume?.themeColor || "#333";
@@ -8,7 +9,8 @@ export default function Skills({ resume, print = false }) {
 
   return (
     <div className="my-6">
-      <h2 className="font-bold text-sm mb-2" style={{ color: themeColor }}>
+      <h2 className="font-bold text-sm mb-2 flex gap-2 align-items-center" style={{ color: themeColor }}>
+        <FaCode style={{fontSize:"22px",color:"#222"}}/>
         Skills
       </h2>
       <hr style={{ borderColor: themeColor }} />

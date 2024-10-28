@@ -5,10 +5,11 @@ import { HexColorPicker } from "react-colorful";
 
 export default function StepOne() {
   const { resume, setResume, updateResume, setStep } = useResume();
+  const token = localStorage.getItem("token");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateResume();
+    updateResume(token);
     setStep(2);
   };
 
@@ -24,8 +25,9 @@ export default function StepOne() {
 
   return (
     <div className="w-full p-5 shadow-lg border-t-4 rounded bg-white">
-      <h2 className="text-2xl font-bold mb-5">Personal Information</h2>
-
+      <h2 className="text-2xl font-bold mb-5">Personal information</h2>
+      
+      <label className="inputLabel mb-3">Name</label>
       <Input
         name="name"
         className="mb-3"
@@ -36,6 +38,8 @@ export default function StepOne() {
         autoFocus
         required
       />
+
+      <label className="inputLabel mb-3">Job title</label>
       <Input
         name="job"
         className="mb-3"
@@ -45,6 +49,8 @@ export default function StepOne() {
         type="text"
         required
       />
+
+      <label className="inputLabel mb-3">Address</label>
       <Input
         name="address"
         className="mb-3"
@@ -54,6 +60,8 @@ export default function StepOne() {
         type="text"
         required
       />
+
+      <label className="inputLabel mb-3">Phone number</label> 
       <Input
         name="phone"
         className="mb-3"
@@ -63,6 +71,8 @@ export default function StepOne() {
         type="number"
         required
       />
+
+      <label className="inputLabel mb-3">Email</label>
       <Input
         name="email"
         className="mb-3"

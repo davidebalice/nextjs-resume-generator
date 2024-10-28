@@ -174,3 +174,8 @@ footer {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.inputLabel{
+  font-size: 12px;
+  font-weight: bold;
+}

@@ -62,8 +62,6 @@ export function ResumeProvider({ children }) {
   const router = useRouter();
   const { _id } = useParams();
 
-  console.log("token in context: " + token);
-
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
@@ -122,11 +120,19 @@ export function ResumeProvider({ children }) {
   };
 
   const updateResume = async (token) => {
+    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
+    const resumeDb = await getResumeFromDb(_id, token);
     try {
-      const data = await updateResumeFromDb(resume, token);
-      setResume(data);
-      getUserResumes(token);
-      toast.success("Resume updated.");
+      if (isDemoMode && resumeDb.demo === true) {
+        toast.error(
+          "Update not allowed, Demo Mode is active. Create a new Resume."
+        );
+      } else {
+        const data = await updateResumeFromDb(resume, token);
+        setResume(data);
+        getUserResumes(token);
+        toast.success("Resume updated.");
+      }
     } catch (err) {
       console.error(err);
       toast.error("Failed to update resume");
@@ -134,15 +140,23 @@ export function ResumeProvider({ children }) {
   };
 
   const updateExperience = async (experienceList, token) => {
+    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
+    const resumeDb = await getResumeFromDb(_id, token);
     try {
-      const data = await updateExperienceToDb({
-        ...resume,
-        experience: experienceList,
-        token,
-      });
-      setResume(data);
-      getUserResumes(token);
-      toast.success("Experience updated.");
+      if (isDemoMode && resumeDb.demo === true) {
+        toast.error(
+          "Update not allowed, Demo Mode is active. Create a new Resume."
+        );
+      } else {
+        const data = await updateExperienceToDb({
+          ...resume,
+          experience: experienceList,
+          token,
+        });
+        setResume(data);
+        getUserResumes(token);
+        toast.success("Experience updated.");
+      }
     } catch (err) {
       console.error(err);
       toast.error("Failed to update experience");
@@ -173,62 +187,38 @@ export function ResumeProvider({ children }) {
     setStep(4);
   };
 
-  const addExperience = () => {
-    const newExperience = { ...experienceField };
-    setExperienceList([...experienceList, newExperience]);
-    setResume((prevState) => ({
-      ...prevState,
-      experience: [...experienceList, newExperience],
-    }));
-  };
-
-  const removeExperience = (token) => {
-    if (experienceList.length === 1) return;
-    const newEntries = experienceList.slice(0, experienceList.length - 1);
-    setExperienceList(newEntries);
-    updateExperience(newEntries, token);
-  };
-
-  const handleExperienceGenerateWithAi = async (index) => {
-    setExperienceLoading((prevState) => ({ ...prevState, [index]: true }));
-
-    const selectedExperience = experienceList[index];
-    if (!selectedExperience || !selectedExperience.title) {
+  const addExperience = async () => {
+    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
+    const resumeDb = await getResumeFromDb(_id, token);
+    if (isDemoMode && resumeDb.demo === true) {
       toast.error(
-        "Please fill in the job details for the selected experience entry"
+        "Update not allowed, Demo Mode is active. Create a new Resume."
       );
-      setExperienceLoading((prevState) => ({ ...prevState, [index]: false }));
-      return;
-    }
-
-    const jobTitle = selectedExperience.title;
-    const jobSummary = selectedExperience.summary || "";
-
-    try {
-      const response = await runAi(
-        `Generate a list of duties and responsibilities in HTML bullet points for the job title "${jobTitle}" ${jobSummary}, not in markdown format.`
-      );
-
-      const updatedExperienceList = experienceList.slice();
-      updatedExperienceList[index] = {
-        ...selectedExperience,
-        summary: response,
-      };
-
-      setExperienceList(updatedExperienceList);
+    } else {
+      const newExperience = { ...experienceField };
+      setExperienceList([...experienceList, newExperience]);
       setResume((prevState) => ({
         ...prevState,
-        experience: updatedExperienceList,
+        experience: [...experienceList, newExperience],
       }));
-    } catch (err) {
-      console.error(err);
-      toast.error("Failed to generate job description");
-    } finally {
-      setExperienceLoading((prevState) => ({ ...prevState, [index]: false }));
     }
   };
 
-  // education section
+  const removeExperience = async (token) => {
+    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
+    const resumeDb = await getResumeFromDb(_id, token);
+    if (isDemoMode && resumeDb.demo === true) {
+      toast.error(
+        "Update not allowed, Demo Mode is active. Create a new Resume."
+      );
+    } else {
+      if (experienceList.length === 1) return;
+      const newEntries = experienceList.slice(0, experienceList.length - 1);
+      setExperienceList(newEntries);
+      updateExperience(newEntries, token);
+    }
+  };
+
   useEffect(() => {
     if (resume.education) {
       setEducationList(resume.education);
@@ -236,23 +226,32 @@ export function ResumeProvider({ children }) {
   }, [resume]);
 
   const updateEducation = async (educationList, token) => {
+    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
+    const resumeDb = await getResumeFromDb(_id, token);
     try {
-      const data = await updateEducationToDb({
-        ...resume,
-        education: educationList,
-        token,
-      });
-      setResume(data);
-      toast.success("Education updated.");
+      if (isDemoMode && resumeDb.demo === true) {
+        toast.error(
+          "Update not allowed, Demo Mode is active. Create a new Resume."
+        );
+      } else {
+        const data = await updateEducationToDb({
+          ...resume,
+          education: educationList,
+          token,
+        });
+        setResume(data);
+        toast.success("Education updated.");
+      }
     } catch (err) {
       console.error(err);
       toast.error("Failed to update education");
     }
   };
 
-  const handleEducationChange = (e, index) => {
+  const handleEducationChange = async (e, index) => {
     const newEntries = [...educationList];
     const { name, value } = e.target;
+    console.log(value);
     newEntries[index][name] = value;
     setEducationList(newEntries);
   };
@@ -262,23 +261,38 @@ export function ResumeProvider({ children }) {
     setStep(5);
   };
 
-  const addEducation = () => {
-    const newEducation = { ...educationField };
-    setEducationList([...educationList, newEducation]);
-    setResume((prevState) => ({
-      ...prevState,
-      education: [...educationList, newEducation],
-    }));
+  const addEducation = async () => {
+    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
+    const resumeDb = await getResumeFromDb(_id, token);
+    if (isDemoMode && resumeDb.demo === true) {
+      toast.error(
+        "Update not allowed, Demo Mode is active. Create a new Resume."
+      );
+    } else {
+      const newEducation = { ...educationField };
+      setEducationList([...educationList, newEducation]);
+      setResume((prevState) => ({
+        ...prevState,
+        education: [...educationList, newEducation],
+      }));
+    }
   };
 
-  const removeEducation = (token) => {
-    if (educationList.length === 1) return;
-    const newEntries = educationList.slice(0, educationList.length - 1);
-    setEducationList(newEntries);
-    updateEducation(newEntries, token);
+  const removeEducation = async (token) => {
+    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
+    const resumeDb = await getResumeFromDb(_id, token);
+    if (isDemoMode && resumeDb.demo === true) {
+      toast.error(
+        "Update not allowed, Demo Mode is active. Create a new Resume."
+      );
+    } else {
+      if (educationList.length === 1) return;
+      const newEntries = educationList.slice(0, educationList.length - 1);
+      setEducationList(newEntries);
+      updateEducation(newEntries, token);
+    }
   };
 
-  // skills section
   useEffect(() => {
     if (resume.skills) {
       setSkillsList(resume.skills);
@@ -286,30 +300,38 @@ export function ResumeProvider({ children }) {
   }, [resume]);
 
   const updateSkills = async (skillsList, token) => {
-    const invalidSkills = skillsList.filter(
-      (skill) => !skill.name || !skill.level
-    );
+    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
+    const resumeDb = await getResumeFromDb(_id, token);
+    if (isDemoMode && resumeDb.demo === true) {
+      toast.error(
+        "Update not allowed, Demo Mode is active. Create a new Resume."
+      );
+    } else {
+      const invalidSkills = skillsList.filter(
+        (skill) => !skill.name || !skill.level
+      );
 
-    if (invalidSkills.length > 0) {
-      toast.error("Please fill in both skill name and level");
-      return;
-    }
+      if (invalidSkills.length > 0) {
+        toast.error("Please fill in both skill name and level");
+        return;
+      }
 
-    try {
-      const data = await updateSkillsToDb({
-        ...resume,
-        skills: skillsList,
-        token,
-      });
-      setResume(data);
-      toast.success("Skills updated.");
-    } catch (err) {
-      console.error(err);
-      toast.error("Failed to update skills");
+      try {
+        const data = await updateSkillsToDb({
+          ...resume,
+          skills: skillsList,
+          token,
+        });
+        setResume(data);
+        toast.success("Skills updated.");
+      } catch (err) {
+        console.error(err);
+        toast.error("Failed to update skills");
+      }
     }
   };
 
-  const handleSkillsChange = (e, index) => {
+  const handleSkillsChange = async (e, index) => {
     const newEntries = [...skillsList];
     const { name, value } = e.target;
     newEntries[index][name] = value;
@@ -321,28 +343,53 @@ export function ResumeProvider({ children }) {
     router.push(`/dashboard/resume/download/${resume._id}`);
   };
 
-  const addSkill = () => {
-    const newSkill = { ...skillField };
-    setSkillsList([...skillsList, newSkill]);
-    setResume((prevState) => ({
-      ...prevState,
-      skills: [...skillsList, newSkill],
-    }));
+  const addSkill = async () => {
+    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
+    const resumeDb = await getResumeFromDb(_id, token);
+    if (isDemoMode && resumeDb.demo === true) {
+      toast.error(
+        "Update not allowed, Demo Mode is active. Create a new Resume."
+      );
+    } else {
+      const newSkill = { ...skillField };
+      setSkillsList([...skillsList, newSkill]);
+      setResume((prevState) => ({
+        ...prevState,
+        skills: [...skillsList, newSkill],
+      }));
+    }
   };
 
-  const removeSkill = (token) => {
-    if (skillsList.length === 1) return;
-    const newEntries = skillsList.slice(0, skillsList.length - 1);
-    setSkillsList(newEntries);
-    updateSkills(newEntries, token);
+  const removeSkill = async (token) => {
+    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
+    const resumeDb = await getResumeFromDb(_id, token);
+    if (isDemoMode && resumeDb.demo === true) {
+      toast.error(
+        "Update not allowed, Demo Mode is active. Create a new Resume."
+      );
+    } else {
+      if (skillsList.length === 1) return;
+      const newEntries = skillsList.slice(0, skillsList.length - 1);
+      setSkillsList(newEntries);
+      updateSkills(newEntries, token);
+    }
   };
 
   const deleteResume = async (_id, token) => {
+    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
+    const resumeDb = await getResumeFromDb(_id, token);
+
     try {
-      await deleteResumeFromDb(_id, token);
-      setResumes(resumes.filter((resume) => resume._id !== _id));
-      getUserResumes(token);
-      toast.success("Resume deleted");
+      if (isDemoMode && resumeDb.demo === true) {
+        toast.error(
+          "Delete not allowed, Demo Mode is active. Create a new Resume."
+        );
+      } else {
+        await deleteResumeFromDb(_id, token);
+        setResumes(resumes.filter((resume) => resume._id !== _id));
+        getUserResumes(token);
+        toast.success("Resume deleted");
+      }
     } catch (err) {
       console.error(err);
       toast.error("Failed to delete resume");
@@ -366,7 +413,6 @@ export function ResumeProvider({ children }) {
         handleExperienceSubmit,
         addExperience,
         removeExperience,
-        handleExperienceGenerateWithAi,
         educationList,
         handleEducationChange,
         handleEducationSubmit,
