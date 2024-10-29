@@ -1,12 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useResume } from "@/context/resume";
+import Image from "next/image";
+import { useState } from "react";
 
 export default function StepOneCreate() {
+  const [loading, setLoading] = useState(false);
   const { resume, setResume, saveResume } = useResume();
   const token = localStorage.getItem("token");
 
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
     saveResume(token);
   };
@@ -24,7 +28,7 @@ export default function StepOneCreate() {
   return (
     <div className="w-full p-5 shadow-lg border-t-4 rounded bg-white">
       <h2 className="text-2xl font-bold mb-5">Personal Information</h2>
-      
+
       <label className="inputLabel mb-3">Name</label>
       <Input
         name="name"
@@ -82,7 +86,21 @@ export default function StepOneCreate() {
       />
 
       <div className="flex justify-end">
-        <Button onClick={handleSubmit}>Save</Button>
+        <Button onClick={handleSubmit}>
+          {loading ? (
+            <>
+              <Image
+                src="/spinner-white.svg"
+                alt="spinner"
+                width={50}
+                height={50}
+                style={{ margin: "0 auto" }}
+              />
+            </>
+          ) : (
+            <>Save</>
+          )}
+        </Button>
       </div>
     </div>
   );

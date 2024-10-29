@@ -1,39 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { useResume } from "@/context/resume";
 import dynamic from "next/dynamic";
-import React from "react";
-import toast from "react-hot-toast";
+import Image from "next/image";
+import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export default function StepTwo() {
   const { resume, setResume, updateResume, setStep } = useResume();
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("token");
 
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
     updateResume(token);
     setStep(3);
-  };
-
-  const handleGenerateWithAi = async () => {
-    setLoading(true);
-    if (!resume.job) {
-      toast.error(
-        "Please fill in your personal details or write something about yourself"
-      );
-      setLoading(false);
-      return;
-    }
-
-    const response = await runAi(
-      `Generate a resume summary for a person with the following details: ${JSON.stringify(
-        resume
-      )} in plain text format`
-    );
-    setResume({ ...resume, summary: response });
-    setLoading(false);
   };
 
   return (
@@ -50,7 +32,22 @@ export default function StepTwo() {
       />
 
       <div className="flex justify-end mt-3">
-        <Button onClick={handleSubmit}>Next</Button>
+        <Button onClick={handleSubmit}>
+          {" "}
+          {loading ? (
+            <>
+              <Image
+                src="/spinner-white.svg"
+                alt="spinner"
+                width={50}
+                height={50}
+                style={{ margin: "0 auto" }}
+              />
+            </>
+          ) : (
+            <>Next</>
+          )}
+        </Button>
       </div>
     </div>
   );

@@ -6,8 +6,10 @@ import { useState } from "react";
 export default function Login({ onLogin }) {
   const [email, setEmail] = useState("mario@rossi.it");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
+    setLoading(true);
     const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -72,10 +74,29 @@ export default function Login({ onLogin }) {
               />
               <button
                 onClick={handleLogin}
-                className="bg-black text-white py-2 px-4 rounded w-full"
+                className="bg-black text-white py-2 px-4 rounded w-full text-center"
               >
-                Login
+                {loading ? (
+                  <>
+                    <Image
+                      src="/spinner-white.svg"
+                      alt="spinner"
+                      width={50}
+                      height={50}
+                      style={{ margin: "0 auto" }}
+                    />
+                  </>
+                ) : (
+                  <>Login</>
+                )}
               </button>
+              <div className="mt-3">
+                <b>Demo data:</b>
+                <br />
+                mario@rossi.it
+                <br />
+                12345678
+              </div>
             </div>
           </div>
         </div>

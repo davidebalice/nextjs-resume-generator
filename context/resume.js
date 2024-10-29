@@ -396,6 +396,10 @@ export function ResumeProvider({ children }) {
     }
   };
 
+  const resetResume = async () => {
+    setResume(initialState);
+  };
+
   return (
     <ResumeContext.Provider
       value={{
@@ -404,6 +408,7 @@ export function ResumeProvider({ children }) {
         resume,
         setResume,
         saveResume,
+        resetResume,
         resumes,
         updateResume,
         experienceList,

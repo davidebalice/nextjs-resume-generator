@@ -3,13 +3,20 @@ import { useResume } from "@/context/resume";
 import { usePathname } from "next/navigation";
 
 export default function ResumeCreateNav() {
-  const { step, setStep } = useResume();
+  const { step, setStep, resetResume } = useResume();
   const pathname = usePathname();
   const isEditPage = pathname.includes("/edit/");
 
   return (
     <nav className="flex justify-center w-full py-4">
       <div className="flex space-x-4">
+        <button
+          onClick={() => resetResume()}
+          className="bg-black text-white py-1 px-5 rounded"
+        >
+          Reset data
+        </button>
+
         <p className="stepTitle">Step</p>
         {[1, 2, 3, 4, 5].map((item) => (
           <Button

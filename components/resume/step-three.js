@@ -3,10 +3,13 @@ import { Input } from "@/components/ui/input";
 import { useResume } from "@/context/resume";
 import { ArrowRight, Plus, X } from "lucide-react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
+import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export default function StepThree() {
+  const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("token");
   const {
     experienceList,
@@ -15,7 +18,6 @@ export default function StepThree() {
     handleExperienceSubmit,
     addExperience,
     removeExperience,
-    handleExperienceGenerateWithAi,
     experienceLoading,
   } = useResume();
 
@@ -26,8 +28,7 @@ export default function StepThree() {
       {experienceList?.length > 0 &&
         experienceList?.map((experience, index) => (
           <div key={index} className="mb-10">
-
-            <label className="inputLabel mb-3">Name</label>
+            <label className="inputLabel mb-3">Job title</label>
             <Input
               name="title"
               type="text"
@@ -101,7 +102,20 @@ export default function StepThree() {
         )}
 
         <Button variant="outline" onClick={() => handleExperienceSubmit(token)}>
-          <ArrowRight size={18} className="mr-2" /> Next
+          <ArrowRight size={18} className="mr-2" />{" "}
+          {loading ? (
+            <>
+              <Image
+                src="/spinner-white.svg"
+                alt="spinner"
+                width={50}
+                height={50}
+                style={{ margin: "0 auto" }}
+              />
+            </>
+          ) : (
+            <>Next</>
+          )}
         </Button>
       </div>
     </div>

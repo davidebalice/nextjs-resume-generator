@@ -1,0 +1,556 @@
+[{
+  "_id": {
+    "$oid": "671f678cf74577c83aab68d4"
+  },
+  "userEmail": "mario@rossi.it",
+  "name": "Mario Rossi",
+  "job": "Fullstack developer",
+  "address": "Corso Buenos Aires - Milano",
+  "phone": "123456789",
+  "email": "mario@rossi.it",
+  "themeColor": "#c12626",
+  "summary": "<p>Elit tempor adipiscing dolor ut fugiat aliqua laboris nostrud incididunt aliqua consequat sit nostrud enim quis commodo cillum ipsum cillum aliquip adipiscing cillum minim adipiscing consectetur sit eiusmod consequat adipiscing elit aliqua sit et do laboris aliquip et commodo cillum sed ut magna fugiat sit esse aliqua incididunt nostrud et.</p><p>Aliquip esse fugiat lorem lorem consectetur tempor enim dolore cillum dolore aliquip nostrud lorem minim incididunt amet cillum elit amet tempor do aliqua aliquip lorem duis eiusmod quis voluptate consectetur cillum commodo elit sed commodo fugiat eiusmod enim do elit minim do quis aliqua labore adipiscing sed enim adipiscing aliquip.</p>",
+  "experience": [
+    {
+      "title": "Frontend Developer",
+      "company": "Tech Company",
+      "address": "Oxford Street - London",
+      "startDate": "01/03/2019",
+      "endDate": "30/10/2021",
+      "summary": "<p>Aliquip esse fugiat lorem lorem consectetur tempor enim dolore cillum dolore aliquip nostrud lorem minim incididunt amet cillum elit amet tempor do aliqua aliquip lorem duis eiusmod quis voluptate consectetur cillum commodo elit sed commodo fugiat eiusmod enim do elit minim do quis aliqua labore adipiscing sed enim adipiscing aliquip.</p><p>Ipsum quis quis enim do enim commodo veniam duis aliquip ipsum voluptate voluptate tempor lorem elit labore do duis incididunt magna sed incididunt elit veniam consequat tempor quis amet ut eiusmod ipsum esse eiusmod labore ut incididunt quis labore magna veniam quis dolore fugiat ut cillum incididunt duis tempor eiusmod.</p>",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6810"
+      }
+    },
+    {
+      "title": "Backend developer",
+      "company": "Software Company",
+      "address": "Via del Corso - Roma",
+      "startDate": "22/01/2022",
+      "endDate": "30/04/2024",
+      "summary": "<p>Sed adipiscing sed ipsum amet elit aliquip dolore amet esse consectetur quis consectetur quis dolore cillum dolore eiusmod fugiat minim lorem magna voluptate consequat magna minim adipiscing do ut laboris lorem quis elit consectetur magna nostrud esse amet voluptate incididunt exercitation eiusmod et consectetur eiusmod ipsum esse ipsum consectetur et.</p><p>Sed adipiscing sed ipsum amet elit aliquip dolore amet esse consectetur quis consectetur quis dolore cillum dolore eiusmod fugiat minim lorem magna voluptate consequat magna minim adipiscing do ut laboris lorem quis elit consectetur magna nostrud esse amet voluptate incididunt exercitation eiusmod et consectetur eiusmod ipsum esse ipsum consectetur et.</p>",
+      "_id": {
+        "$oid": "671fe1636dbcc660dea62ed2"
+      }
+    }
+  ],
+  "education": [
+    {
+      "name": "Tech School",
+      "address": "Milano",
+      "qualification": "Programmer",
+      "year": "2014",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6811"
+      }
+    },
+    {
+      "name": "Programmer School",
+      "address": "Roma",
+      "qualification": "Web Developer",
+      "year": "2017",
+      "_id": {
+        "$oid": "671fe3cd6dbcc660dea6320e"
+      }
+    }
+  ],
+  "skills": [
+    {
+      "name": "PHP",
+      "level": "4",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6812"
+      }
+    },
+    {
+      "name": "Java",
+      "level": "3",
+      "_id": {
+        "$oid": "671fe3986dbcc660dea631ba"
+      }
+    },
+    {
+      "name": "Javascript",
+      "level": "5",
+      "_id": {
+        "$oid": "671fe3af6dbcc660dea631e2"
+      }
+    },
+    {
+      "name": "Html/Css",
+      "level": "5",
+      "_id": {
+        "$oid": "671fe3af6dbcc660dea631e3"
+      }
+    }
+  ],
+  "demo": true,
+  "createdAt": {
+    "$date": "2024-10-28T10:28:05.582Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-28T19:19:45.706Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671f696cf74577c83aab6944"
+  },
+  "userEmail": "mario@rossi.it",
+  "name": "Luigi Verdi",
+  "job": "Backend developer",
+  "address": "Via Roma - Torino",
+  "phone": "123456789",
+  "email": "luigi@verdi.it",
+  "themeColor": "#0d8b15",
+  "summary": "<p>Adipiscing ut aliqua incididunt aliqua sit duis fugiat exercitation sit voluptate nostrud sit dolore enim ut enim eiusmod lorem veniam commodo tempor lorem quis elit aliqua incididunt fugiat sed veniam dolore sed cillum veniam dolore amet dolor labore et nostrud nostrud ut dolore cillum.</p><p>Aliquip dolor cillum enim incididunt lorem voluptate fugiat eiusmod do esse ut labore nostrud exercitation incididunt sed cillum enim dolor ipsum minim ipsum quis dolor lorem quis dolor commodo fugiat commodo dolor labore veniam sed tempor tempor incididunt nostrud cillum nostrud tempor do minim.</p>",
+  "experience": [
+    {
+      "title": "Frontend developer",
+      "company": "Tech Company",
+      "address": "Trafalgar Square - London",
+      "startDate": "15/04/2020",
+      "endDate": "30/11/2022",
+      "summary": "<p>Consectetur tempor aliqua tempor amet et commodo elit et aliquip incididunt duis esse commodo enim adipiscing ipsum dolor minim labore dolore amet veniam fugiat eiusmod veniam adipiscing incididunt veniam consequat labore consequat voluptate amet adipiscing enim ut laboris laboris duis exercitation sit fugiat ut.</p>",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6810"
+      }
+    },
+    {
+      "title": "Frontend developer",
+      "company": "Code Company",
+      "address": "Avenue des Champs-Élysées - Paris",
+      "startDate": "10/10/2023",
+      "endDate": "31/12/2023",
+      "summary": "<p>Quis tempor sit dolore nostrud lorem consequat sed cillum cillum eiusmod laboris sit sit ipsum eiusmod aliquip duis duis quis et consectetur enim laboris ipsum commodo quis labore voluptate commodo quis et elit sed quis et sed voluptate ut aliquip cillum fugiat commodo magna.</p>",
+      "_id": {
+        "$oid": "6720f48523a6f24f4bdb0f57"
+      }
+    }
+  ],
+  "education": [
+    {
+      "name": "Tech School",
+      "address": "Fifth Avenu - New York",
+      "qualification": "Fullstack Developer",
+      "year": "2020",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6811"
+      }
+    },
+    {
+      "name": "Programing School",
+      "address": "Corso Buenos Aires - Milano",
+      "qualification": "Fullstack Developer",
+      "year": "2022",
+      "_id": {
+        "$oid": "6720f4ea23a6f24f4bdb0f88"
+      }
+    }
+  ],
+  "skills": [
+    {
+      "name": "Node.js",
+      "level": "5",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6812"
+      }
+    },
+    {
+      "name": "Java",
+      "level": "4",
+      "_id": {
+        "$oid": "6720f50123a6f24f4bdb0fa9"
+      }
+    },
+    {
+      "name": "Angular",
+      "level": "5",
+      "_id": {
+        "$oid": "6720f50123a6f24f4bdb0faa"
+      }
+    }
+  ],
+  "demo": true,
+  "createdAt": {
+    "$date": "2024-10-28T10:28:05.582Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-29T14:45:21.231Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671f6980f74577c83aab6990"
+  },
+  "userEmail": "mario@rossi.it",
+  "name": "Giuseppe Neri",
+  "job": "Frontend Developer",
+  "address": "Via Montenapoleone - Milano",
+  "phone": "123456789",
+  "email": "giuseppe@neri.it",
+  "themeColor": "#484848",
+  "summary": "<p>Lorem sed ipsum elit veniam consequat fugiat voluptate elit fugiat esse cillum quis laboris lorem magna exercitation nostrud incididunt et consequat commodo et fugiat tempor elit incididunt eiusmod sit lorem do lorem lorem exercitation voluptate aliqua aliqua ipsum elit voluptate magna et fugiat minim.</p><p>Tempor magna enim nostrud labore aliquip aliqua dolore eiusmod dolore dolor elit incididunt dolore do aliquip elit veniam cillum ipsum duis quis do adipiscing consequat aliqua minim enim dolor et tempor eiusmod exercitation adipiscing et fugiat dolor duis sit ipsum cillum enim incididunt exercitation.</p>",
+  "experience": [
+    {
+      "title": "Frontend developed",
+      "company": "Tech Company",
+      "address": "Piazza Venezia - Roma",
+      "startDate": "02/02/2021",
+      "endDate": "10/30/2022",
+      "summary": "<p>Duis duis exercitation laboris et quis cillum enim veniam esse do elit magna minim duis fugiat aliqua consequat minim minim nostrud sit consequat dolore eiusmod exercitation duis quis fugiat elit sed laboris do exercitation cillum eiusmod lorem elit sit cillum exercitation labore fugiat aliquip.</p>",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6810"
+      }
+    },
+    {
+      "title": "Frontend developed",
+      "company": "Code Company",
+      "address": "Piazza del Popolo - Roma",
+      "startDate": "01/01/2023",
+      "endDate": "01/02/2024",
+      "summary": "<p>Dolore consequat lorem nostrud adipiscing elit veniam labore veniam fugiat aliqua consequat nostrud minim aliquip consequat voluptate cillum amet lorem dolore dolor aliqua consectetur magna quis do do exercitation nostrud incididunt veniam magna tempor dolore nostrud eiusmod ipsum quis enim ut dolore cillum sed.</p>",
+      "_id": {
+        "$oid": "6720f5d723a6f24f4bdb1077"
+      }
+    }
+  ],
+  "education": [
+    {
+      "name": "Tech School",
+      "address": "Rockefeller Center - New York",
+      "qualification": "Fullstack developer",
+      "year": "2022",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6811"
+      }
+    },
+    {
+      "name": "Code School",
+      "address": "Piazza del Popolo - Roma",
+      "qualification": "Backend developer",
+      "year": "2023",
+      "_id": {
+        "$oid": "6720f62923a6f24f4bdb10a3"
+      }
+    }
+  ],
+  "skills": [
+    {
+      "name": "Spring Boot",
+      "level": "4",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6812"
+      }
+    },
+    {
+      "name": "Php",
+      "level": "3",
+      "_id": {
+        "$oid": "6720f64123a6f24f4bdb10c4"
+      }
+    },
+    {
+      "name": "React",
+      "level": "5",
+      "_id": {
+        "$oid": "6720f64123a6f24f4bdb10c5"
+      }
+    }
+  ],
+  "demo": true,
+  "createdAt": {
+    "$date": "2024-10-28T10:28:05.582Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-29T14:50:41.720Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6720f7329954d088a449e9a2"
+  },
+  "userEmail": "mario@rossi.it",
+  "name": "Mario Rossi",
+  "job": "Fullstack developer",
+  "address": "Corso Buenos Aires - Milano",
+  "phone": "123456789",
+  "email": "mario@rossi.it",
+  "themeColor": "#c12626",
+  "summary": "<p>Elit tempor adipiscing dolor ut fugiat aliqua laboris nostrud incididunt aliqua consequat sit nostrud enim quis commodo cillum ipsum cillum aliquip adipiscing cillum minim adipiscing consectetur sit eiusmod consequat adipiscing elit aliqua sit et do laboris aliquip et commodo cillum sed ut magna fugiat sit esse aliqua incididunt nostrud et.</p><p>Aliquip esse fugiat lorem lorem consectetur tempor enim dolore cillum dolore aliquip nostrud lorem minim incididunt amet cillum elit amet tempor do aliqua aliquip lorem duis eiusmod quis voluptate consectetur cillum commodo elit sed commodo fugiat eiusmod enim do elit minim do quis aliqua labore adipiscing sed enim adipiscing aliquip.</p>",
+  "experience": [
+    {
+      "title": "Frontend Developer",
+      "company": "Tech Company",
+      "address": "Oxford Street - London",
+      "startDate": "01/03/2019",
+      "endDate": "30/10/2021",
+      "summary": "<p>Aliquip esse fugiat lorem lorem consectetur tempor enim dolore cillum dolore aliquip nostrud lorem minim incididunt amet cillum elit amet tempor do aliqua aliquip lorem duis eiusmod quis voluptate consectetur cillum commodo elit sed commodo fugiat eiusmod enim do elit minim do quis aliqua labore adipiscing sed enim adipiscing aliquip.</p><p>Ipsum quis quis enim do enim commodo veniam duis aliquip ipsum voluptate voluptate tempor lorem elit labore do duis incididunt magna sed incididunt elit veniam consequat tempor quis amet ut eiusmod ipsum esse eiusmod labore ut incididunt quis labore magna veniam quis dolore fugiat ut cillum incididunt duis tempor eiusmod.</p>",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6810"
+      }
+    },
+    {
+      "title": "Backend developer",
+      "company": "Software Company",
+      "address": "Via del Corso - Roma",
+      "startDate": "22/01/2022",
+      "endDate": "30/04/2024",
+      "summary": "<p>Sed adipiscing sed ipsum amet elit aliquip dolore amet esse consectetur quis consectetur quis dolore cillum dolore eiusmod fugiat minim lorem magna voluptate consequat magna minim adipiscing do ut laboris lorem quis elit consectetur magna nostrud esse amet voluptate incididunt exercitation eiusmod et consectetur eiusmod ipsum esse ipsum consectetur et.</p><p>Sed adipiscing sed ipsum amet elit aliquip dolore amet esse consectetur quis consectetur quis dolore cillum dolore eiusmod fugiat minim lorem magna voluptate consequat magna minim adipiscing do ut laboris lorem quis elit consectetur magna nostrud esse amet voluptate incididunt exercitation eiusmod et consectetur eiusmod ipsum esse ipsum consectetur et.</p>",
+      "_id": {
+        "$oid": "671fe1636dbcc660dea62ed2"
+      }
+    }
+  ],
+  "education": [
+    {
+      "name": "Tech School",
+      "address": "Milano",
+      "qualification": "Programmer",
+      "year": "2014",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6811"
+      }
+    },
+    {
+      "name": "Programmer School",
+      "address": "Roma",
+      "qualification": "Web Developer",
+      "year": "2017",
+      "_id": {
+        "$oid": "671fe3cd6dbcc660dea6320e"
+      }
+    }
+  ],
+  "skills": [
+    {
+      "name": "PHP",
+      "level": "4",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6812"
+      }
+    },
+    {
+      "name": "Java",
+      "level": "3",
+      "_id": {
+        "$oid": "671fe3986dbcc660dea631ba"
+      }
+    },
+    {
+      "name": "Javascript",
+      "level": "5",
+      "_id": {
+        "$oid": "671fe3af6dbcc660dea631e2"
+      }
+    },
+    {
+      "name": "Html/Css",
+      "level": "5",
+      "_id": {
+        "$oid": "671fe3af6dbcc660dea631e3"
+      }
+    }
+  ],
+  "demo": true,
+  "createdAt": {
+    "$date": "2024-10-28T10:28:05.582Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-28T10:28:05.582Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6720f7459954d088a449e9ad"
+  },
+  "userEmail": "mario@rossi.it",
+  "name": "Mario Rossi09",
+  "job": "Fullstack developer",
+  "address": "Corso Buenos Aires - Milano",
+  "phone": "123456789",
+  "email": "mario@rossi.it",
+  "themeColor": "#c12626",
+  "summary": "<p>Elit tempor adipiscing dolor ut fugiat aliqua laboris nostrud incididunt aliqua consequat sit nostrud enim quis commodo cillum ipsum cillum aliquip adipiscing cillum minim adipiscing consectetur sit eiusmod consequat adipiscing elit aliqua sit et do laboris aliquip et commodo cillum sed ut magna fugiat sit esse aliqua incididunt nostrud et.</p><p>Aliquip esse fugiat lorem lorem consectetur tempor enim dolore cillum dolore aliquip nostrud lorem minim incididunt amet cillum elit amet tempor do aliqua aliquip lorem duis eiusmod quis voluptate consectetur cillum commodo elit sed commodo fugiat eiusmod enim do elit minim do quis aliqua labore adipiscing sed enim adipiscing aliquip.</p>",
+  "experience": [
+    {
+      "title": "Frontend Developer",
+      "company": "Tech Company",
+      "address": "Oxford Street - London",
+      "startDate": "01/03/2019",
+      "endDate": "30/10/2021",
+      "summary": "<p>Aliquip esse fugiat lorem lorem consectetur tempor enim dolore cillum dolore aliquip nostrud lorem minim incididunt amet cillum elit amet tempor do aliqua aliquip lorem duis eiusmod quis voluptate consectetur cillum commodo elit sed commodo fugiat eiusmod enim do elit minim do quis aliqua labore adipiscing sed enim adipiscing aliquip.</p><p>Ipsum quis quis enim do enim commodo veniam duis aliquip ipsum voluptate voluptate tempor lorem elit labore do duis incididunt magna sed incididunt elit veniam consequat tempor quis amet ut eiusmod ipsum esse eiusmod labore ut incididunt quis labore magna veniam quis dolore fugiat ut cillum incididunt duis tempor eiusmod.</p>",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6810"
+      }
+    },
+    {
+      "title": "Backend developer",
+      "company": "Software Company",
+      "address": "Via del Corso - Roma",
+      "startDate": "22/01/2022",
+      "endDate": "30/04/2024",
+      "summary": "<p>Sed adipiscing sed ipsum amet elit aliquip dolore amet esse consectetur quis consectetur quis dolore cillum dolore eiusmod fugiat minim lorem magna voluptate consequat magna minim adipiscing do ut laboris lorem quis elit consectetur magna nostrud esse amet voluptate incididunt exercitation eiusmod et consectetur eiusmod ipsum esse ipsum consectetur et.</p><p>Sed adipiscing sed ipsum amet elit aliquip dolore amet esse consectetur quis consectetur quis dolore cillum dolore eiusmod fugiat minim lorem magna voluptate consequat magna minim adipiscing do ut laboris lorem quis elit consectetur magna nostrud esse amet voluptate incididunt exercitation eiusmod et consectetur eiusmod ipsum esse ipsum consectetur et.</p>",
+      "_id": {
+        "$oid": "671fe1636dbcc660dea62ed2"
+      }
+    }
+  ],
+  "education": [
+    {
+      "name": "Tech School",
+      "address": "Milano",
+      "qualification": "Programmer",
+      "year": "2014",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6811"
+      }
+    },
+    {
+      "name": "Programmer School",
+      "address": "Roma",
+      "qualification": "Web Developer",
+      "year": "2017",
+      "_id": {
+        "$oid": "671fe3cd6dbcc660dea6320e"
+      }
+    }
+  ],
+  "skills": [
+    {
+      "name": "PHP",
+      "level": "4",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6812"
+      }
+    },
+    {
+      "name": "Java",
+      "level": "3",
+      "_id": {
+        "$oid": "671fe3986dbcc660dea631ba"
+      }
+    },
+    {
+      "name": "Javascript",
+      "level": "5",
+      "_id": {
+        "$oid": "671fe3af6dbcc660dea631e2"
+      }
+    },
+    {
+      "name": "Html/Css",
+      "level": "5",
+      "_id": {
+        "$oid": "671fe3af6dbcc660dea631e3"
+      }
+    }
+  ],
+  "demo": true,
+  "createdAt": {
+    "$date": "2024-10-28T10:28:05.582Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-28T10:28:05.582Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6720f7659954d088a449e9d4"
+  },
+  "userEmail": "mario@rossi.it",
+  "name": "Mario Rossi",
+  "job": "Fullstack developer",
+  "address": "Corso Buenos Aires - Milano",
+  "phone": "123456789",
+  "email": "mario@rossi.it",
+  "themeColor": "#c12626",
+  "summary": "<p>Elit tempor adipiscing dolor ut fugiat aliqua laboris nostrud incididunt aliqua consequat sit nostrud enim quis commodo cillum ipsum cillum aliquip adipiscing cillum minim adipiscing consectetur sit eiusmod consequat adipiscing elit aliqua sit et do laboris aliquip et commodo cillum sed ut magna fugiat sit esse aliqua incididunt nostrud et.</p><p>Aliquip esse fugiat lorem lorem consectetur tempor enim dolore cillum dolore aliquip nostrud lorem minim incididunt amet cillum elit amet tempor do aliqua aliquip lorem duis eiusmod quis voluptate consectetur cillum commodo elit sed commodo fugiat eiusmod enim do elit minim do quis aliqua labore adipiscing sed enim adipiscing aliquip.</p>",
+  "experience": [
+    {
+      "title": "Frontend Developer",
+      "company": "Tech Company",
+      "address": "Oxford Street - London",
+      "startDate": "01/03/2019",
+      "endDate": "30/10/2021",
+      "summary": "<p>Aliquip esse fugiat lorem lorem consectetur tempor enim dolore cillum dolore aliquip nostrud lorem minim incididunt amet cillum elit amet tempor do aliqua aliquip lorem duis eiusmod quis voluptate consectetur cillum commodo elit sed commodo fugiat eiusmod enim do elit minim do quis aliqua labore adipiscing sed enim adipiscing aliquip.</p><p>Ipsum quis quis enim do enim commodo veniam duis aliquip ipsum voluptate voluptate tempor lorem elit labore do duis incididunt magna sed incididunt elit veniam consequat tempor quis amet ut eiusmod ipsum esse eiusmod labore ut incididunt quis labore magna veniam quis dolore fugiat ut cillum incididunt duis tempor eiusmod.</p>",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6810"
+      }
+    },
+    {
+      "title": "Backend developer",
+      "company": "Software Company",
+      "address": "Via del Corso - Roma",
+      "startDate": "22/01/2022",
+      "endDate": "30/04/2024",
+      "summary": "<p>Sed adipiscing sed ipsum amet elit aliquip dolore amet esse consectetur quis consectetur quis dolore cillum dolore eiusmod fugiat minim lorem magna voluptate consequat magna minim adipiscing do ut laboris lorem quis elit consectetur magna nostrud esse amet voluptate incididunt exercitation eiusmod et consectetur eiusmod ipsum esse ipsum consectetur et.</p><p>Sed adipiscing sed ipsum amet elit aliquip dolore amet esse consectetur quis consectetur quis dolore cillum dolore eiusmod fugiat minim lorem magna voluptate consequat magna minim adipiscing do ut laboris lorem quis elit consectetur magna nostrud esse amet voluptate incididunt exercitation eiusmod et consectetur eiusmod ipsum esse ipsum consectetur et.</p>",
+      "_id": {
+        "$oid": "671fe1636dbcc660dea62ed2"
+      }
+    }
+  ],
+  "education": [
+    {
+      "name": "Tech School",
+      "address": "Milano",
+      "qualification": "Programmer",
+      "year": "2014",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6811"
+      }
+    },
+    {
+      "name": "Programmer School",
+      "address": "Roma",
+      "qualification": "Web Developer",
+      "year": "2017",
+      "_id": {
+        "$oid": "671fe3cd6dbcc660dea6320e"
+      }
+    }
+  ],
+  "skills": [
+    {
+      "name": "PHP",
+      "level": "4",
+      "_id": {
+        "$oid": "671f6735f74577c83aab6812"
+      }
+    },
+    {
+      "name": "Java",
+      "level": "3",
+      "_id": {
+        "$oid": "671fe3986dbcc660dea631ba"
+      }
+    },
+    {
+      "name": "Javascript",
+      "level": "5",
+      "_id": {
+        "$oid": "671fe3af6dbcc660dea631e2"
+      }
+    },
+    {
+      "name": "Html/Css",
+      "level": "5",
+      "_id": {
+        "$oid": "671fe3af6dbcc660dea631e3"
+      }
+    }
+  ],
+  "demo": true,
+  "createdAt": {
+    "$date": "2024-10-28T10:28:05.582Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-28T10:28:05.582Z"
+  },
+  "__v": 0
+}]

@@ -2,8 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useResume } from "@/context/resume";
 import { ArrowRight, Plus, X } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
 
 export default function SetpFour() {
+  const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("token");
   const {
     educationList,
@@ -77,7 +80,20 @@ export default function SetpFour() {
         )}
 
         <Button variant="outline" onClick={() => handleEducationSubmit(token)}>
-          <ArrowRight size={18} className="mr-2" /> Next
+          <ArrowRight size={18} className="mr-2" />
+          {loading ? (
+            <>
+              <Image
+                src="/spinner-white.svg"
+                alt="spinner"
+                width={50}
+                height={50}
+                style={{ margin: "0 auto" }}
+              />
+            </>
+          ) : (
+            <>Next</>
+          )}
         </Button>
       </div>
     </div>

@@ -21,7 +21,6 @@ export const logout = () => {
 
 export const currentUser = async (token) => {
   if (!token) {
-    console.log("token non trovato currentUser");
     return null;
   }
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -35,8 +34,6 @@ export const currentUser = async (token) => {
 
   if (res.ok) {
     const data = await res.json();
-    console.log("data");
-    console.log(data);
     return data.user;
   } else {
     return null;

@@ -17,13 +17,7 @@ export async function GET(req) {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    console.log("decoded");
-    console.log(decoded);
-
     const id = decoded.id;
-
-    console.log("id");
-    console.log(id);
 
     await connectDB();
 

@@ -4,9 +4,6 @@ import Resume from "@/models/resume";
 import { currentUser } from "@/utils/auth";
 
 const checkOwnership = async (resumeId, token) => {
-  if (!token) {
-    console.log("token not found: checkOwnership");
-  }
   try {
     const user = await currentUser(token);
     const userEmail = user?.email;
@@ -30,9 +27,6 @@ const checkOwnership = async (resumeId, token) => {
 };
 
 export const saveResumeToDb = async (data, token) => {
-  if (!token) {
-    console.log("token not found: saveResumeToDb");
-  }
   try {
     db();
     const user = await currentUser(token);
@@ -52,9 +46,6 @@ export const saveResumeToDb = async (data, token) => {
 };
 
 export const getUserResumesFromDb = async (token) => {
-  if (!token) {
-    console.log("token not found: getUserResumesFromDb");
-  }
   try {
     db();
     const user = await currentUser(token);
@@ -69,9 +60,6 @@ export const getUserResumesFromDb = async (token) => {
 };
 
 export const getResumeFromDb = async (_id, token) => {
-  if (!token) {
-    console.log("token not found: getResumeFromDb");
-  }
   try {
     db();
     const resume = await Resume.findById(_id);
@@ -82,9 +70,6 @@ export const getResumeFromDb = async (_id, token) => {
 };
 
 export const updateResumeFromDb = async (data, token) => {
-  if (!token) {
-    console.log("token not found: updateResumeFromDb");
-  }
   try {
     db();
     const { _id, ...rest } = data;
@@ -109,9 +94,7 @@ export const updateExperienceToDb = async (data) => {
     const { _id, experience, token } = data;
 
     await checkOwnership(_id, token);
-    if (!token) {
-      console.log("token not found: updateExperienceToDb");
-    }
+
     const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
     const resume = await Resume.findByIdAndUpdate(
       _id,
@@ -134,9 +117,6 @@ export const updateEducationToDb = async (data) => {
   try {
     db();
     const { _id, education, token } = data;
-    if (!token) {
-      console.log("token not found: updateEducationToDb");
-    }
 
     await checkOwnership(_id, token);
 
@@ -162,9 +142,7 @@ export const updateSkillsToDb = async (data) => {
   try {
     db();
     const { _id, skills, token } = data;
-    if (!token) {
-      console.log("token not found: updateSkillsToDb");
-    }
+
     await checkOwnership(_id, token);
     const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
     const resume = await Resume.findByIdAndUpdate(
@@ -184,20 +162,10 @@ export const updateSkillsToDb = async (data) => {
 };
 
 export const deleteResumeFromDb = async (_id, token) => {
-  if (!token) {
-    console.log("token not found: deleteResumeFromDb");
-  }
   try {
     db();
     await checkOwnership(_id, token);
-    const isDemoMode = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
-
     const resume = await Resume.findByIdAndDelete(_id);
-
-    if (isDemoMode && resume.demo === true) {
-      throw new Error("Modifications are not allowed in demo mode.");
-    }
-
     return JSON.parse(JSON.stringify(resume));
   } catch (err) {
     throw new Error(err);
