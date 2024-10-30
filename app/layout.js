@@ -22,13 +22,13 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          <ResumeProvider>
-            <AuthProvider>
+          <AuthProvider>
+            <ResumeProvider>
               <TopNav />
               {children}
               <Footer />
-            </AuthProvider>
-          </ResumeProvider>
+            </ResumeProvider>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

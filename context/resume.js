@@ -1,4 +1,5 @@
 "use client";
+import { useAuth } from "./authContext";
 
 import {
   deleteResumeFromDb,
@@ -50,6 +51,8 @@ const initialState = {
 };
 
 export function ResumeProvider({ children }) {
+  const { token, setToken } = useAuth();
+  // const [token, setToken] = useState(null);
   const [resume, setResume] = useState(initialState);
   const [resumes, setResumes] = useState([]);
   const [step, setStep] = useState(1);
@@ -57,17 +60,17 @@ export function ResumeProvider({ children }) {
   const [experienceLoading, setExperienceLoading] = useState({});
   const [educationList, setEducationList] = useState([educationField]);
   const [skillsList, setSkillsList] = useState([skillField]);
-  const [token, setToken] = useState(null);
 
   const router = useRouter();
   const { _id } = useParams();
 
   useEffect(() => {
+    /*
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       setToken(storedToken);
     }
-
+  */
     const savedResume = localStorage.getItem("resume");
     if (savedResume) {
       setResume(JSON.parse(savedResume));
@@ -251,7 +254,6 @@ export function ResumeProvider({ children }) {
   const handleEducationChange = async (e, index) => {
     const newEntries = [...educationList];
     const { name, value } = e.target;
-    console.log(value);
     newEntries[index][name] = value;
     setEducationList(newEntries);
   };

@@ -15,6 +15,10 @@ export default function TopNav() {
     router.push("/dashboard");
   };
 
+  const create = () => {
+    router.push("/resume/create");
+  };
+
   return (
     <nav
       className="flex justify-between items-center p-1 shadow top-nav"
@@ -24,7 +28,7 @@ export default function TopNav() {
         <Link href="/">
           <Image src="/logo.png" alt="logo db" width={100} height={100} />
         </Link>
-        <Link href="/" style={{marginLeft:"20px"}}>
+        <Link href="/" style={{ marginLeft: "20px" }}>
           <Image src="/next.png" alt="logo next.js" width={100} height={100} />
         </Link>
       </div>
@@ -32,6 +36,13 @@ export default function TopNav() {
       <Toaster />
 
       <div className="flex justify-end items-center gap-2">
+        <button
+          onClick={create}
+          className="bg-black text-white py-1 px-5 rounded"
+        >
+          Create
+        </button>
+
         {isAuthenticated && resumes.length >= 1 && (
           <button
             onClick={navigateToResumes}

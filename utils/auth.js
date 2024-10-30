@@ -1,4 +1,7 @@
+import { useAuth } from "../context/authContext";
+
 export const login = async (email, password) => {
+  const { setToken } = useAuth();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const res = await fetch(`${apiUrl}/api/auth/login`, {
     method: "POST",
@@ -9,6 +12,7 @@ export const login = async (email, password) => {
   const data = await res.json();
   if (res.ok) {
     localStorage.setItem("token", data.token);
+    setToken(data.token);
     return true;
   } else {
     return false;
@@ -16,7 +20,9 @@ export const login = async (email, password) => {
 };
 
 export const logout = () => {
+  const { setToken } = useAuth();
   localStorage.removeItem("token");
+  setToken(null);
 };
 
 export const currentUser = async (token) => {
