@@ -1,9 +1,23 @@
-## Getting Started
 
-First, run the development server:
+# Resume generator - Next.js
 
-```bash
-npm run dev
-```
+Insert your personal information, working experience, education and skills, save, print and share Resume.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Frontend link:
+
+https://nextjs-resume-generator.davidebalice.dev/
+
+<br>
+
+
+## Screenshot:
+
+![Screenshot](https://www.aroundweb.it/screenshot/next-resume1.jpg)
+
+![Screenshot](https://www.aroundweb.it/screenshot/next-resume2.jpg)
+
+
+
+
+
+
